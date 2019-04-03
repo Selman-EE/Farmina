@@ -23,5 +23,10 @@ namespace Farmina.Web.DAL.Entity
 		public decimal Price { get; set; }
 		[DisplayName("Varsayılan Adet")]
 		public int? DefaultCount { get; set; }
+
+		/*
+         * multiple relation
+         */
+		public virtual ICollection<OrderProduct> OrderProducts { get; set; }
 	}
 }

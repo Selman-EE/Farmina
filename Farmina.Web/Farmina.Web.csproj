@@ -115,10 +115,13 @@
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="DAL\Entity\AccountLog.cs" />
     <Compile Include="DAL\Entity\BaseEntity.cs" />
     <Compile Include="DAL\Entity\Company.cs" />
+    <Compile Include="DAL\Entity\Discount.cs" />
+    <Compile Include="DAL\Entity\Order.cs" />
+    <Compile Include="DAL\Entity\OrderProduct.cs" />
     <Compile Include="DAL\Entity\Product.cs" />
-    <Compile Include="DAL\Entity\Voucher.cs" />
     <Compile Include="DAL\FarminaContext.cs" />
     <Compile Include="DAL\Repository\DbFactory.cs" />
     <Compile Include="DAL\Repository\FarminaRepository.cs" />
