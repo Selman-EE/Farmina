@@ -8,7 +8,7 @@ using System.Web;
 
 namespace Farmina.Web.DAL.Entity
 {
-	[Table("Company")]
+	[Table("Customer")]
 	public class Company : BaseEntity
 	{
 		[Key]
@@ -17,8 +17,6 @@ namespace Farmina.Web.DAL.Entity
 		public string Name { get; set; }
 		[DisplayName("Müşteri Kodu")]
 		public string CustomerCode { get; set; }
-		[DisplayName("Şirket Kodu")]
-		public string CompanyCode { get; set; }
 		[DisplayName("Vergi No")]
 		public int TaxNumber { get; set; }
 		[DisplayName("Bölge")]
@@ -29,8 +27,5 @@ namespace Farmina.Web.DAL.Entity
 		public string City { get; set; }
 		[DisplayName("Adres")]
 		public string Address { get; set; }
-		[DisplayName("Satıcı Mı?")]
-		public bool IsSupplier { get; set; }
-
 	}
 }

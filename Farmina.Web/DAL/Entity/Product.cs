@@ -11,6 +11,12 @@ namespace Farmina.Web.DAL.Entity
 	[Table("Product")]
 	public class Product : BaseEntity
 	{
+		public Product()
+		{
+			OrderProducts = new List<OrderProduct>();
+		}
+
+
 		[Key]
 		public int Id { get; set; }
 		[DisplayName("Ürün Adı")]

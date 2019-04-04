@@ -18,13 +18,14 @@ namespace Farmina.Web.DAL
 		public DbSet<Order> Orders { get; set; }
 		public DbSet<OrderProduct> OrderProducts { get; set; }
 		public DbSet<Discount> Discounts { get; set; }
+		public DbSet<Supplier> Suppliers { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
 			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 			modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
 			//for entity properties
-			//modelBuilder.Entity<Product>().Property(e => e.Price).HasPrecision(18, 4);
+			modelBuilder.Entity<OrderProduct>().Property(e => e.Price).HasPrecision(18, 4);
 		}
 	}
 }
