@@ -14,12 +14,11 @@ namespace Farmina.Web.Controllers
 {
 	public class AccountController : BaseController
 	{
+		private readonly IFarminaRepository _fR;
 		public AccountController(IFarminaRepository farminaRepository)
 		{
 			_fR = farminaRepository;
 		}
-
-		private readonly IFarminaRepository _fR;
 
 		//================================
 		// Business Logic

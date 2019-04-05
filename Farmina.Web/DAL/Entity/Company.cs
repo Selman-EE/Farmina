@@ -18,7 +18,7 @@ namespace Farmina.Web.DAL.Entity
 		[DisplayName("Müşteri Kodu")]
 		public string CustomerCode { get; set; }
 		[DisplayName("Vergi No")]
-		public int TaxNumber { get; set; }
+		public string TaxNumber { get; set; }
 		[DisplayName("Bölge")]
 		public string Region { get; set; }
 		[DisplayName("Posta Kodu")]

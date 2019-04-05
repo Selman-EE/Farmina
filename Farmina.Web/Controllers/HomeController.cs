@@ -11,13 +11,11 @@ namespace Farmina.Web.Controllers
 {
 	public class HomeController : Controller
 	{
-
+		private readonly IFarminaRepository _fR;
 		public HomeController(IFarminaRepository farminaRepository)
 		{
 			_fR = farminaRepository;
 		}
-
-		private readonly IFarminaRepository _fR;
 
 		// GET: Home
 		public ActionResult Index()
