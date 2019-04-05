@@ -17,7 +17,6 @@ namespace Farmina.Web.Controllers
 			_fR = farminaRepository;
 		}
 
-
 		// GET: Company
 		public ActionResult Index()
 		{
@@ -31,21 +30,24 @@ namespace Farmina.Web.Controllers
 		public ActionResult Create(Company company)
 		{
 			company.CreatedDate = DateTime.Now;
+			company.Status = true;
 			_fR.Add(company);
+			_fR.SaveChanges();
+
 			return RedirectToAction("Index");
 		}
-		public ActionResult Edit(int companyId)
+		public ActionResult Edit(int id)
 		{
-			var company = _fR.GetWhere<Company>(s => s.Id == companyId)?.FirstOrDefault() ?? new Company();
+			var company = _fR.GetWhere<Company>(s => s.Id == id && s.Status && !s.IsDeleted)?.FirstOrDefault() ?? new Company();
 			if (company.Id <= 0)
 				return RedirectToAction("Index");
 
-			return View(companyId);
+			return View("Create", company);
 		}
 		[HttpPost]
 		public ActionResult Edit(Company company)
 		{
-			var companyEntity = _fR.GetWhere<Company>(s => s.Id == company.Id)?.FirstOrDefault() ?? new Company();
+			var companyEntity = _fR.GetWhere<Company>(s => s.Id == company.Id && s.Status && !s.IsDeleted)?.FirstOrDefault() ?? new Company();
 			if (company.Id <= 0)
 				return RedirectToAction("Index");
 			//
@@ -56,10 +58,10 @@ namespace Farmina.Web.Controllers
 			companyEntity.City = company.City?.Trim();
 			companyEntity.Address = company.Address?.Trim();
 			companyEntity.CustomerCode = company.CustomerCode?.Trim();
-			companyEntity.Status = company.Status;
 			companyEntity.UpdatedDate = DateTime.Now;
 			//
 			_fR.Update(companyEntity);
+			_fR.SaveChanges();
 			//
 			return RedirectToAction("Index");
 		}
@@ -67,11 +69,13 @@ namespace Farmina.Web.Controllers
 		[HttpPost]
 		public ActionResult Delete(int id)
 		{
-			var companyEntity = _fR.GetWhere<Company>(s => s.Id == id)?.FirstOrDefault() ?? new Company();
+			var companyEntity = _fR.GetWhere<Company>(s => s.Id == id && s.Status && !s.IsDeleted)?.FirstOrDefault() ?? new Company();
 			companyEntity.Status = false;
 			companyEntity.IsDeleted = true;
+			companyEntity.DeletedDate = DateTime.Now;
 			//
 			_fR.Update(companyEntity);
+			_fR.SaveChanges();
 			return Json(new Response { Status = true, EntityId = id, Message = "Silindi", TotalCount = 1 });
 		}
 	}

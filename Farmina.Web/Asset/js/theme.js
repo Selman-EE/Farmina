@@ -5037,23 +5037,3 @@ window.theme.fn = {
 
 }).apply(this, [window.theme, jQuery]);
 
-
-
-
-
-/* Ali Evdi */
-
-function showLoading() {
-    $("div#divLoading").addClass('show');
-}
-function hideLoading() {
-    $("div#divLoading").removeClass('show');
-}
-
-$( "#open" ).click(function() {
-	showLoading();
-
-	setTimeout(() => {
-		hideLoading();
-	}, 2000);
-});

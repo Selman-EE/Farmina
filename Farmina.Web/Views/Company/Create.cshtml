@@ -1,0 +1,100 @@
+﻿@model Farmina.Web.DAL.Entity.Company
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	var isUpdate = Model != null ? (Model.Id > 0 ? true : false) : false;
+}
+
+<header class="page-header">
+	<h2>Şirket</h2>
+</header>
+
+<div class="row">
+	<div class="col-lg-6">
+		@using (Html.BeginForm(isUpdate ? "Edit" : "Create", "Company", FormMethod.Post))
+		{
+			if (isUpdate)
+			{
+				<input type="hidden" name="Id" value="@Model.Id" />
+			}
+
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+			<section class="card">
+				<header class="card-header">
+					<h2 class="card-title">Şirket @(isUpdate ? "Güncelle" : "Ekle")</h2>
+				</header>
+				<div class="card-body">
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Name, "Şirket Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.CustomerCode, "Müşteri Kodu", htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.CustomerCode, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.CustomerCode, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.TaxNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.TaxNumber, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.TaxNumber, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Region, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.Region, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Region, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.ZipCode, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.City, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+						</div>
+					</div>
+				</div>
+				<footer class="card-footer">
+					<!-- end: page -->
+					<div class="btn btn-default pull-left">
+						@Html.ActionLink("Listeye geri dön", "Index")
+					</div>
+
+					<button type="submit" class="btn btn-primary pull-right">@(isUpdate ? "Güncelle" : "Kaydet") </button>
+				</footer>
+			</section>
+
+		}
+	</div>
+</div>
