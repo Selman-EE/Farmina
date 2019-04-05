@@ -1,4 +1,6 @@
-﻿using Farmina.Web.Extension;
+﻿using Farmina.Web.DAL.Entity;
+using Farmina.Web.DAL.Repository;
+using Farmina.Web.Extension;
 using Farmina.Web.Helper;
 using Farmina.Web.Models;
 using System;
@@ -10,8 +12,15 @@ using System.Web.Security;
 
 namespace Farmina.Web.Controllers
 {
-	public class AccountController : Controller
+	public class AccountController : BaseController
 	{
+		public AccountController(IFarminaRepository farminaRepository)
+		{
+			_fR = farminaRepository;
+		}
+
+		private readonly IFarminaRepository _fR;
+
 		//================================
 		// Business Logic
 		//================================
@@ -55,6 +64,19 @@ namespace Farmina.Web.Controllers
 			//save login data on cookie
 			model.IsLoggedIn = true;
 			CookieHelper.SetCookiesValue(model);
+			//
+			//get ip address
+#pragma warning disable CS0618 // Type or member is obsolete
+			string hostName = System.Net.Dns.GetHostByName(hostName: Environment.MachineName).AddressList[0].ToString();
+#pragma warning restore CS0618 // Type or member is obsolete
+
+			_fR.Add(new AccountLog
+			{
+				HostName = hostName,
+				UserHostAddress = Helper.RequestHelpers.GetClientIpAddress(Request),
+				LogonUserIdentity = Request?.LogonUserIdentity?.Name ?? "",
+				ConnectTime = DateTime.Now,
+			});
 			//return main page
 			return RedirectToAction("Index", "Home");
 		}

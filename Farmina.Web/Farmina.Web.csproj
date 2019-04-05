@@ -122,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Script\site.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -132,12 +133,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\DiscountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\SupplierController.cs" />
     <Compile Include="DAL\Entity\AccountLog.cs" />
     <Compile Include="DAL\Entity\BaseEntity.cs" />
     <Compile Include="DAL\Entity\Company.cs" />
     <Compile Include="DAL\Entity\Discount.cs" />
+    <Compile Include="DAL\Entity\ErrorLog.cs" />
     <Compile Include="DAL\Entity\Order.cs" />
     <Compile Include="DAL\Entity\OrderProduct.cs" />
     <Compile Include="DAL\Entity\Product.cs" />
@@ -154,6 +159,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helper\CookieHelper.cs" />
+    <Compile Include="Helper\RequestHelpers.cs" />
     <Compile Include="Migrations\201904022224231_CreateDb.cs" />
     <Compile Include="Migrations\201904022224231_CreateDb.Designer.cs">
       <DependentUpon>201904022224231_CreateDb.cs</DependentUpon>
@@ -166,6 +172,7 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -176,10 +183,13 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="BLL\" />
-    <Folder Include="Views\Account\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Company\" />
+    <Folder Include="Views\Discount\" />
+    <Folder Include="Views\Order\" />
     <Folder Include="Views\Product\" />
+    <Folder Include="Views\Shared\" />
+    <Folder Include="Views\Supplier\" />
     <Folder Include="_Template\" />
   </ItemGroup>
   <ItemGroup>

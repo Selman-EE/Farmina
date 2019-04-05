@@ -19,6 +19,7 @@ namespace Farmina.Web.DAL
 		public DbSet<OrderProduct> OrderProducts { get; set; }
 		public DbSet<Discount> Discounts { get; set; }
 		public DbSet<Supplier> Suppliers { get; set; }
+		public DbSet<ErrorLog> ErrorLogs { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
