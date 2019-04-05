@@ -61,7 +61,6 @@ namespace Farmina.Web.Controllers
 			System.Web.HttpContext.Current.Session.Timeout = 60;
 			//	
 			//save login data on cookie
-			model.IsLoggedIn = true;
 			CookieHelper.SetCookiesValue(model);
 			//
 			//get ip address

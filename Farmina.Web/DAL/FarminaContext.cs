@@ -20,6 +20,7 @@ namespace Farmina.Web.DAL
 		public DbSet<Discount> Discounts { get; set; }
 		public DbSet<Supplier> Suppliers { get; set; }
 		public DbSet<ErrorLog> ErrorLogs { get; set; }
+		public DbSet<AccountLog> AccountLogs { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
