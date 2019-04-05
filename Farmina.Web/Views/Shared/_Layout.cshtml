@@ -151,6 +151,17 @@
 	<script src="/Asset/vendor/jquery-sparkline/jquery-sparkline.js"></script>
 	<script src="/Asset/vendor/raphael/raphael.js"></script>
 
+	<script src="/Asset/vendor/select2/js/select2.js"></script>
+	<script src="/Asset/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+	<script src="/Asset/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+	<script src="/Asset/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+	<script src="/Asset/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+	<script src="/Asset/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+
 	<!-- Notifications  2 -->
 	<script src="/Asset/vendor/pnotify/pnotify.custom.js"></script>
 	<script src="/Asset/js/examples/examples.notifications.js"></script>
@@ -166,13 +177,18 @@
 	<script src="/Asset/js/theme.init.js"></script>
 
 	<!-- Examples -->
+	<!-- todo: Ali Burada cok fazla js geliyor bozuyor gorunumu search kaydi-->
 	<script src="/Asset/js/examples/examples.dashboard.js"></script>
+	<script src="/Asset/js/examples/examples.datatables.default.js"></script>
+	<script src="/Asset/js/examples/examples.datatables.row.with.details.js"></script>
+	<script src="/Asset/js/examples/examples.datatables.tabletools.js"></script>
+
 
 	<!-- Site Scripts -->
 	<script src="~/Script/site.js?@($"v{Guid.NewGuid().ToString()}")"></script>
 
 	@RenderSection("scripts", false)
 
-</body>
 
+</body>
 </html>

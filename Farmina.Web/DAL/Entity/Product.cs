@@ -26,9 +26,10 @@ namespace Farmina.Web.DAL.Entity
 		[DisplayName("Barkod")]
 		public string Barcode { get; set; }
 		[DisplayName("Fiyatı")]
+		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N0}")]
 		public decimal Price { get; set; }
 		[DisplayName("Varsayılan Adet")]
-		public int? DefaultCount { get; set; }
+		public int DefaultCount { get; set; }
 
 		/*
          * multiple relation

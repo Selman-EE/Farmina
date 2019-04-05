@@ -2542,6 +2542,8 @@
     <Content Include="Views\Shared\SideBar.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
     <Content Include="Views\Company\Create.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2554,7 +2556,6 @@
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Discount\" />
     <Folder Include="Views\Order\" />
-    <Folder Include="Views\Product\" />
     <Folder Include="Views\Supplier\" />
   </ItemGroup>
   <ItemGroup>

@@ -75,6 +75,7 @@ namespace Farmina.Web.Controllers
 				LogonUserIdentity = Request?.LogonUserIdentity?.Name ?? "",
 				ConnectTime = DateTime.Now,
 			});
+			_fR.SaveChanges();
 			//return main page
 			return RedirectToAction("Index", "Home");
 		}

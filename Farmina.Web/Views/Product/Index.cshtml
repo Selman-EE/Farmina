@@ -1,0 +1,61 @@
+﻿@model IEnumerable<Farmina.Web.DAL.Entity.Product>
+
+@{
+	ViewBag.Title = "Product";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<header class="page-header">
+	<h2>Ürünler</h2>
+</header>
+
+<!-- start: page -->
+<div class="row">
+	<div class="col">
+		<section class="card">
+			<header class="card-header">
+				<div class="card-actions">
+					<a class="buttoncolor" href="@Url.Action("Create","Product")">
+						Ürün Ekle <i class="fa fa-plus"></i>
+					</a>
+				</div>
+
+				<h2 class="card-title">Ürünler</h2>
+			</header>
+			<div class="card-body">
+				<table class="table table-bordered table-striped mb-0" id="datatable-default">
+					<thead>
+						<tr>
+							<th>Ürün Adı</th>
+							<th>Ürün Kodu</th>
+							<th>Barkod</th>
+							<th>Fiyatı</th>
+							<th>Adet</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr id="@item.Id">
+								<td>@item.Name</td>
+								<td>@item.Code</td>
+								<td>@item.Barcode</td>
+								<td>@item.Price</td>
+								<td>@item.DefaultCount</td>
+								<td class="table-actions">
+									<a href="@Url.Action("Edit","Product", new { id = item.Id })"><i class="fa fa-edit" style="font-size: large;"></i></a> &nbsp;
+									<a href="#" onclick="deleteEntity('@item.Id','@Url.Action("Delete","Product")')" class="on-default remove-row"><i class="fa fa-trash" style="font-size: large;"></i></a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+</div>
+
+
+<!-- end: page -->
