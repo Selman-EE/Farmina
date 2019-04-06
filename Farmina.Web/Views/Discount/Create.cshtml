@@ -1,0 +1,83 @@
+﻿@model Farmina.Web.DAL.Entity.Discount
+
+@{
+	ViewBag.Title = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	var isUpdate = Model != null ? (Model.Id > 0 ? true : false) : false;
+}
+
+
+<header class="page-header">
+	<h2>İndirimler</h2>
+</header>
+
+<!-- start: page -->
+<div class="row">
+	<div class="col-lg-6">
+		@using (Html.BeginForm(isUpdate ? "Edit" : "Create", "Discount", FormMethod.Post))
+		{
+			@Html.AntiForgeryToken()
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+			if (isUpdate)
+			{
+				<input type="hidden" name="Id" value="@Model.Id" />
+			}
+
+			<section class="card form-horizontal">
+				<header class="card-header">
+					<h2 class="card-title">İndirim Ekle</h2>
+				</header>
+				<div class="card-body">
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+					<div class="form-group">
+						@Html.LabelFor(model => model.FirstPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.FirstPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+							@Html.ValidationMessageFor(model => model.FirstPercent, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.SecondPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.SecondPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+							@Html.ValidationMessageFor(model => model.SecondPercent, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.ThirdPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.ThirdPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+							@Html.ValidationMessageFor(model => model.ThirdPercent, "", new { @class = "text-danger" })
+						</div>
+					</div>
+					<div class="form-group">
+						@Html.LabelFor(model => model.FourthPercent, htmlAttributes: new { @class = "control-label col-md-2" })
+						<div class="col-md-10">
+							@Html.EditorFor(model => model.FourthPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+							@Html.ValidationMessageFor(model => model.FourthPercent, "", new { @class = "text-danger" })
+						</div>
+					</div>
+
+				</div>
+				<footer class="card-footer">
+					<!-- end: page -->
+					<div class="btn btn-default pull-left">
+						@Html.ActionLink("Listeye geri dön", "Index")
+					</div>
+
+					<button type="submit" class="btn btn-primary pull-right">@(isUpdate ? "Güncelle" : "Kaydet") </button>
+				</footer>
+			</section>
+		}
+	</div>
+</div>

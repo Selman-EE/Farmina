@@ -90,7 +90,7 @@
 		$('#Price').val("@Model.Price.ToString("0.00")");
 		$('#Price').keyup(function (event) {
 			//
-			var matches = $(this).val().match(/,/g);
+			var matches = $(this).val().match(/./g);
 			// skip for arrow keys
 			if (!matches && event.which != 46) return;
 			//
