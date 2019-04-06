@@ -1,40 +1,52 @@
 ﻿@model IEnumerable<Farmina.Web.DAL.Entity.Supplier>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<header class="page-header">
+	<h2>Tedarikçi</h2>
+</header>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Code)
-        </th>
-        <th></th>
-    </tr>
+<!-- start: page -->
+<div class="row">
+	<div class="col">
+		<section class="card">
+			<header class="card-header">
+				<div class="card-actions">
+					<a class="buttoncolor" href="@Url.Action("Create","Supplier")">
+						Tedarikçi Ekle <i class="fa fa-plus"></i>
+					</a>
+				</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Code)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-        </td>
-    </tr>
-}
-
-</table>
+				<h2 class="card-title">İndirimler</h2>
+			</header>
+			<!--todo: butun datatable larda search boxlar kaymis geliyor buyuk ihtimale js dosyalarindan ben fazla ekledim galiba onlara bir bakabilirsen iyi olur-->
+			<div class="card-body">
+				<table class="table table-bordered table-striped mb-0" id="datatable-default">
+					<thead>
+						<tr>
+							<th>Tedarikçi Adı</th>
+							<th>Tedarikçi Kodu</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var item in Model)
+						{
+							<tr id="@item.Id">
+								<td>@item.Name</td>
+								<td>@item.Code</td>
+								<td class="table-actions">
+									<a href="@Url.Action("Edit","Supplier", new { id = item.Id })"><i class="fa fa-edit" style="font-size: large;"></i></a> &nbsp;
+									<a href="#" onclick="deleteEntity('@item.Id','@Url.Action("Delete","Supplier")')" class="on-default remove-row"><i class="fa fa-trash" style="font-size: large;"></i></a>
+								</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</section>
+	</div>
+</div>
