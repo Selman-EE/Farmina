@@ -18309,3 +18309,48 @@ html.dark .notification-menu .title {
 	margin-top: -16px;
 }
 
+.form-number {
+    background: #0072ba;
+    text-align: center;
+    color: #fff;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 32px;
+    width: 30px;
+    height: 39px;
+    line-height: 39px;
+    float:left;
+    margin-right: 5px;
+}
+.form-number.delete {
+    float:left;
+    margin-right:0;
+    background: #f00;
+    cursor: pointer;
+}
+.urun-liste {
+    border-bottom: 1px solid #fff;
+    padding: 10px;
+    background: #f1f1f1;
+    margin-bottom:15px;
+}
+.urun-liste .span-edit {
+    display: block;
+    font-weight: bold;
+    padding-top: 7px;
+}
+.total-text {
+    text-align: right
+}
+.dataTables_filter label {
+    float:right;
+}
+.btn-edit {
+    width: 200px;
+    border-color: #0072ba;
+    color: #0072ba;
+}
+.btn-edit:hover {
+    background: #0072ba!important;
+    color:#fff!important;
+}
