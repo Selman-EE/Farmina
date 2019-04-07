@@ -1,4 +1,5 @@
 ﻿using Farmina.Web.DAL.Entity;
+using Farmina.Web.Migrations;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -11,7 +12,9 @@ namespace Farmina.Web.DAL
 	public class FarminaContext : DbContext
 	{
 		public FarminaContext() : base("FarminaDbContext")
-		{ }
+		{
+			Database.SetInitializer(new MigrateDatabaseToLatestVersion<FarminaContext, Configuration>());
+		}
 
 		public DbSet<Company> Companies { get; set; }
 		public DbSet<Product> Products { get; set; }
