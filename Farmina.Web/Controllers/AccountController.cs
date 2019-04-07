@@ -65,12 +65,12 @@ namespace Farmina.Web.Controllers
 			//
 			//get ip address
 #pragma warning disable CS0618 // Type or member is obsolete
-			string hostName = System.Net.Dns.GetHostByName(hostName: Environment.MachineName).AddressList[0].ToString();
+			string hostName = System.Net.Dns.GetHostByName(hostName: Environment.MachineName)?.AddressList[0]?.ToString() ?? "";
 #pragma warning restore CS0618 // Type or member is obsolete
 
 			_fR.Add(new AccountLog
 			{
-				HostName = hostName,
+				HostName = (Request?.Url?.AbsolutePath ?? "") + " " + hostName,
 				UserHostAddress = Helper.RequestHelpers.GetClientIpAddress(Request),
 				LogonUserIdentity = Request?.LogonUserIdentity?.Name ?? "",
 				ConnectTime = DateTime.Now,

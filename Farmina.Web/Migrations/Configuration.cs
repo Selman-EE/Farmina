@@ -16,8 +16,7 @@ namespace Farmina.Web.Migrations
 
 		protected override void Seed(Farmina.Web.DAL.FarminaContext context)
 		{
-			context.Companies.AddOrUpdate(new Company { Id = 1, Name = "Farmina", CustomerCode = "100" });
-			context.Suppliers.AddOrUpdate(new Supplier { Id = 1, Name = "VALTER", Code = "01" });
+			context.Suppliers.AddOrUpdate(new Supplier { Id = 1, Name = "Evren", Code = "101" });
 		}
 	}
 }
