@@ -2544,6 +2544,7 @@
     <Content Include="Views\Discount\Create.cshtml" />
     <Content Include="Views\Supplier\Index.cshtml" />
     <Content Include="Views\Supplier\Create.cshtml" />
+    <Content Include="Views\Home\Partial\AddProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

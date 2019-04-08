@@ -11,390 +11,253 @@
 <!-- start: page -->
 <div class="row">
 
-    <div class="col-lg-12 col-xl-12 mb-5">
-        <div class="accordion accordion-primary" id="accordion2Primary">
-            <div class="card card-default">
-                <div class="card-header">
-                    <h4 class="card-title m-0">
-                        <a class="accordion-toggle" data-toggle="collapse"
-                           data-parent="#accordion2Primary" href="#collapse2PrimaryOne"
-                           aria-expanded="true">
-                            Günlük Veri Arama
-                        </a>
-                    </h4>
-                </div>
-                <div id="collapse2PrimaryOne" class="collapse" style="">
-                    <div class="card-body">
-                        <form class="form-inline">
+	<div class="col-lg-12 col-xl-12 mb-5">
+		<div class="accordion accordion-primary" id="accordion2Primary">
+			<div class="card card-default">
+				<div class="card-header">
+					<h4 class="card-title m-0">
+						<a class="accordion-toggle" data-toggle="collapse"
+						   data-parent="#accordion2Primary" href="#collapse2PrimaryOne"
+						   aria-expanded="true">
+							Günlük Veri Arama
+						</a>
+					</h4>
+				</div>
+				<div id="collapse2PrimaryOne" class="collapse" style="">
+					<div class="card-body">
+						<form class="form-inline">
 
-                            <!--todo: Ali burada ingilizce geliyor gunler aylar TR olsun-->
-                            <div class="col-lg-6">
-                                <div class="input-group">
-                                    <span class="input-group-prepend">
-                                        <span class="input-group-text">
-                                            <i class="fas fa-calendar-alt"></i>
-                                        </span>
-                                    </span>
-                                    <input type="text" data-plugin-datepicker class="form-control">
-                                </div>
-                            </div>
+							<!--todo: Ali burada ingilizce geliyor gunler aylar TR olsun-->
+							<div class="col-lg-6">
+								<div class="input-group">
+									<span class="input-group-prepend">
+										<span class="input-group-text">
+											<i class="fas fa-calendar-alt"></i>
+										</span>
+									</span>
+									<input type="text" data-plugin-datepicker class="form-control">
+								</div>
+							</div>
 
-                            <button type="submit" class="btn btn-primary">Getir</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
+							<button type="button" id="btnGetAllDailyInvoices" class="btn btn-primary">Gunluk Rapor Al</button>
+						</form>
+					</div>
+				</div>
+			</div>
 
-        </div>
-    </div>
-
-
-    <div class="col-md-12">
-        <section class="card">
-            <header class="card-header">
-                <div class="card-actions">
-                    <a href="#" class="card-action card-action-toggle" data-card-toggle></a>
-                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
-                </div>
-
-                <h2 class="card-title">Ürün Ekle</h2>
-            </header>
-            <div class="card-body">
-                <form class="form-horizontal form-bordered" action="#">
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Platform Kodu</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="Tr Farmina" value="TR Farmina" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Belge Tarihi</label>
-
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-prepend">
-                                    <span class="input-group-text">
-                                        <i class="fas fa-calendar-alt"></i>
-                                    </span>
-                                </span>
-                                <input type="text" data-plugin-datepicker class="form-control">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Belge Tipi</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="Invoice" value="Invoice"
-                                   required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Belge Numarası</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="333" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">
-                            Müşteri Ara
-                        </label>
-                        <div class="col-lg-5">
-                            <select data-plugin-selectTwo class="form-control populate" name="">
-                                <option value="">Sinuos Yazılım (34.1.C008)</option>
-                                <option value="">Facebook (31.2.C128)</option>
-                                <option value="">Google (38.6.D108)</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-1">
-                            <button class="btn btn-primary btn-block" type="submit">Ara</button>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Verigi Numarası</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="13542138123"
-                                   required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Ülke Kodu</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="TUR" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Bölge Kodu</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="34.1" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Posta Kodu</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="34595"
-                                   required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label  pt-2">Şehir</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="İstanbul"
-                                   required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Adres</label>
-                        <div class="col-lg-6">
-                            <input type="text" class="form-control" name="" placeholder="Çekmece"
-                                   required>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">
-                            Satıcı Ara
-                        </label>
-                        <div class="col-lg-5">
-                            <select data-plugin-selectTwo class="form-control populate" name="">
-                                <option value="">Ali (108)</option>
-                                <option value="">Selman (921)</option>
-                                <option value="">İnan (4324)</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-1">
-                            <button class="btn btn-primary btn-block" type="submit">Ara</button>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <label class="col-lg-2"></label>
-
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label class="col-form-label" for="formGroupExampleInput">Satıcı Adı</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                            </div>
-                        </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label class="col-form-label" for="formGroupExampleInput">Satıcı Kodu</label>
-                                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-lg-2 control-label pt-2">Ürün Ara</label>
-                        <div class="col-lg-5">
-                            <select multiple data-plugin-selectTwo class="form-control populate">
-                                <option value="">ürün kodu | barkod | ürün adı</option>
-                                <option value="">3123213 | 324234632 | Test</option>
-                            </select>
-                        </div>
-                        <div class="col-lg-1">
-                            <button class="btn btn-primary btn-block" type="submit">Ekle</button>
-                        </div>
-                    </div>
+		</div>
+	</div>
 
 
-                    <div class="urun-liste">
+	<div class="col-md-12">
+		<section class="card">
+			<header class="card-header">
+				<div class="card-actions">
+					<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
+					<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
+				</div>
 
-                        <div class="row form-group">
-                            <label class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput"></label>
-                                    <div class="form-number">1</div>
-                                    <div class="form-number delete"><i class="fa fa-trash"></i></div>
-                                </div>
-                            </label>
+				<h2 class="card-title">Ürün Ekle</h2>
+			</header>
+			<div class="card-body">
+				<form class="form-horizontal form-bordered" action="#">
 
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Ürün Adı</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Fiyatı</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Adet</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">İndirim Oranı</label>
-                                    <select data-plugin-selectTwo class="form-control populate" name="">
-                                        <option value="">25+2+0+0</option>
-                                        <option value="">14+10+5+0</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Döviz Tipi</label>
-                                    <input type="text" class="form-control" name="" placeholder="TL">
-                                </div>
-                            </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Platform Kodu</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="Tr Farmina" value="TR Farmina" required>
+						</div>
+					</div>
 
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">İndirim</label>
-                                    <span class="span-edit">762</span>
-                                </div>
-                            </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Belge Tarihi</label>
 
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">KDV Hariç</label>
-                                    <span class="span-edit">999</span>
-                                </div>
-                            </div>
+						<div class="col-lg-6">
+							<div class="input-group">
+								<span class="input-group-prepend">
+									<span class="input-group-text">
+										<i class="fas fa-calendar-alt"></i>
+									</span>
+								</span>
+								<input type="text" data-plugin-datepicker class="form-control">
+							</div>
+						</div>
+					</div>
 
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">KDV Dahil</label>
-                                    <span class="span-edit">2313</span>
-                                </div>
-                            </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Belge Tipi</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="Invoice" value="Invoice" required>
+						</div>
+					</div>
 
-                        </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Belge Numarası</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="333" required>
+						</div>
+					</div>
 
-                    </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">
+							Müşteri Ara
+						</label>
+						<div class="col-lg-5">
+							<select data-plugin-selectTwo class="form-control populate" name="">
+								<option value="">Sinuos Yazılım (34.1.C008)</option>
+								<option value="">Facebook (31.2.C128)</option>
+								<option value="">Google (38.6.D108)</option>
+							</select>
+						</div>
+						<div class="col-lg-1">
+							<button class="btn btn-primary btn-block" type="button" id="btnAddCustomer">Ekle</button>
+						</div>
+					</div>
 
-                    <div class="urun-liste">
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Verigi Numarası</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="13542138123"
+								   required>
+						</div>
+					</div>
 
-                        <div class="row form-group">
-                            <label class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput"></label>
-                                    <div class="form-number">2</div>
-                                    <div class="form-number delete"><i class="fa fa-trash"></i></div>
-                                </div>
-                            </label>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Ülke Kodu</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="TUR" required>
+						</div>
+					</div>
 
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Ürün Adı</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Fiyatı</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Adet</label>
-                                    <input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-                                </div>
-                            </div>
-                            <div class="col-lg-2">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">İndirim Oranı</label>
-                                    <select data-plugin-selectTwo class="form-control populate" name="">
-                                        <option value="">25+2+0+0</option>
-                                        <option value="">14+10+5+0</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">Döviz Tipi</label>
-                                    <input type="text" class="form-control" name="" placeholder="TL">
-                                </div>
-                            </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Bölge Kodu</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="34.1" required>
+						</div>
+					</div>
 
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">İndirim</label>
-                                    <span class="span-edit">762</span>
-                                </div>
-                            </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Posta Kodu</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="34595"
+								   required>
+						</div>
+					</div>
 
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">KDV Hariç</label>
-                                    <span class="span-edit">999</span>
-                                </div>
-                            </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label  pt-2">Şehir</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="İstanbul"
+								   required>
+						</div>
+					</div>
 
-                            <div class="col-lg-1">
-                                <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput">KDV Dahil</label>
-                                    <span class="span-edit">2313</span>
-                                </div>
-                            </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Adres</label>
+						<div class="col-lg-6">
+							<input type="text" class="form-control" name="" placeholder="Çekmece"
+								   required>
+						</div>
+					</div>
 
-                        </div>
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">
+							Satıcı Ara
+						</label>
+						<div class="col-lg-5">
+							<select data-plugin-selectTwo class="form-control populate" name="">
+								<option value="">Ali (108)</option>
+								<option value="">Selman (921)</option>
+								<option value="">İnan (4324)</option>
+							</select>
+						</div>
+						<div class="col-lg-1">
+							<button class="btn btn-primary btn-block" type="button" id="btnAddSupplier">Ekle</button>
+						</div>
+					</div>
 
-                    </div>
+					<div class="row form-group">
+						<label class="col-lg-2"></label>
+
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label class="col-form-label" for="formGroupExampleInput">Satıcı Adı</label>
+								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+							</div>
+						</div>
+						<div class="col-lg-3">
+							<div class="form-group">
+								<label class="col-form-label" for="formGroupExampleInput">Satıcı Kodu</label>
+								<input type="text" class="form-control" id="formGroupExampleInput" placeholder="">
+							</div>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<label class="col-lg-2 control-label pt-2">Ürün Ara</label>
+						<div class="col-lg-5">
+							<select multiple data-plugin-selectTwo class="form-control populate">
+								<option value="" disabled>ürün kodu | barkod | ürün adı</option>
+								<option value="">3123213 | 324234632 | Test</option>
+							</select>
+						</div>
+						<div class="col-lg-1">
+							<button class="btn btn-primary btn-block" type="button" id="btnAddProduct">Ekle</button>
+						</div>
+					</div>
+
+					<div class="eklenen-urunler">
+						@Html.Partial("~/Views/Home/Partial/AddProduct.cshtml")
+					</div>
 
 
 
-                    <div class="form-group row">
-                        <div class="col-lg-6">
-                            <button class="btn btn-default btn-edit" type="submit">Kaydet</button>
-                        </div>
-                        <div class="col-lg-6">
-                            <p class="total-text">Toplam Fatura Tutarı KDV Dahil: <strong>199 TL</strong></p>
-                        </div>
-                    </div>
 
-                </form>
-            </div>
-        </section>
-    </div>
+					<div class="form-group row">
+						<div class="col-lg-6">
+							<button class="btn btn-default btn-edit" type="submit">Kaydet</button>
+						</div>
+						<div class="col-lg-6">
+							<p class="total-text">Toplam Fatura Tutarı KDV Dahil: <strong>199 TL</strong></p>
+						</div>
+					</div>
 
-    <!--
-    <div class="col-md-12">
-        <br><br><br>
-        <hr>
-        <h4>Buradan Aşağısı Kullanacağın Kodlar</h4>
-        <button id="open" class="mt-3 mb-3 btn btn-primary">Loading</button>
-        <p>(theme.js dosyasında)</p>
-        <br>
-    </div>
+				</form>
+			</div>
+		</section>
+	</div>
 
-    <div class="col-md-12">
-        <section class="card">
-            <header class="card-header">
-                <div class="card-actions">
-                    <a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
-                    <a href="#" class="card-action card-action-dismiss" data-card-dismiss=""></a>
-                </div>
+	<!--
+	<div class="col-md-12">
+		<br><br><br>
+		<hr>
+		<h4>Buradan Aşağısı Kullanacağın Kodlar</h4>
+		<button id="open" class="mt-3 mb-3 btn btn-primary">Loading</button>
+		<p>(theme.js dosyasında)</p>
+		<br>
+	</div>
 
-                <h2 class="card-title">Örnek Notifike</h2>
-            </header>
-            <div class="card-body">
-                <button id="default-primary" class="mt-3 mb-3 btn btn-primary">Primary</button>
-                <button id="default-notice" class="mt-3 mb-3 btn btn-warning">Warning</button>
-                <button id="default-success" class="mt-3 mb-3 btn btn-success">Success</button>
-                <button id="default-info" class="mt-3 mb-3 btn btn-info">Info</button>
-                <button id="default-error" class="mt-3 mb-3 btn btn-danger">Error</button>
-                <button id="default-dark" class="mt-3 mb-3 btn btn-dark">Dark</button>
-            </div>
-        </section>
-    </div>
-    -->
+	<div class="col-md-12">
+		<section class="card">
+			<header class="card-header">
+				<div class="card-actions">
+					<a href="#" class="card-action card-action-toggle" data-card-toggle=""></a>
+					<a href="#" class="card-action card-action-dismiss" data-card-dismiss=""></a>
+				</div>
+
+				<h2 class="card-title">Örnek Notifike</h2>
+			</header>
+			<div class="card-body">
+				<button id="default-primary" class="mt-3 mb-3 btn btn-primary">Primary</button>
+				<button id="default-notice" class="mt-3 mb-3 btn btn-warning">Warning</button>
+				<button id="default-success" class="mt-3 mb-3 btn btn-success">Success</button>
+				<button id="default-info" class="mt-3 mb-3 btn btn-info">Info</button>
+				<button id="default-error" class="mt-3 mb-3 btn btn-danger">Error</button>
+				<button id="default-dark" class="mt-3 mb-3 btn btn-dark">Dark</button>
+			</div>
+		</section>
+	</div>
+	-->
 
 
 
