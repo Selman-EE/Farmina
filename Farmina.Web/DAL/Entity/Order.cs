@@ -20,7 +20,6 @@ namespace Farmina.Web.DAL.Entity
 
 		public int VoucherNumber { get; set; }
 		public DateTime VoucherDate { get; set; }
-		public string VoucherJsonData { get; set; }
 		public int Tax { get; set; }
 		[ForeignKey("Company"), Column(Order = 1)]
 		public int CompanyId { get; set; }

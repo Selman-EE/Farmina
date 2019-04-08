@@ -1,0 +1,76 @@
+﻿@model Farmina.Web.DAL.Entity.Order
+
+@{
+	ViewBag.Title = "Details";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+
+	var productList = Model.OrderProducts.ToList();
+}
+
+<h2>Details</h2>
+
+<div>
+	<h4>Order</h4>
+	<hr />
+	<dl class="dl-horizontal">
+		<dt>
+			Müşteri
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Company.Name)
+		</dd>
+		<dt>
+			Satıcı
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.Supplier.Name)
+		</dd>
+		<dt>
+			Belge Tarihi
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.VoucherDate)
+		</dd>
+		<dt>
+			Belge No
+		</dt>
+		<dd>
+			@Html.DisplayFor(model => model.VoucherNumber)
+		</dd>
+		<dt>
+			Oluşturma Tarihi
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.CreatedDate)
+		</dd>
+
+		<dt>
+			Güncelleme Tarihi
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.UpdatedDate)
+		</dd>
+
+	</dl>
+</div>
+<div>
+	<h2>Ürünler</h2>
+
+	@for (int i = 1; i <= productList.Count; i++)
+	{
+		var item = productList[i - 1];
+		<span>@i</span><br />
+		<span>@item.ProductName</span>
+		<span>@item.Quantity</span>
+		<span>@item.Price</span>
+		<span>@item.Discount</span>
+		<span>@item.Total</span>
+		<br />
+	}
+</div>
+
+<p>
+	@Html.ActionLink("Back to List", "Index")
+</p>
