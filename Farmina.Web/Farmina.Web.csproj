@@ -2138,6 +2138,7 @@
     <Compile Include="Helper\CookieHelper.cs" />
     <Compile Include="Helper\RequestHelpers.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AddProductModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2547,6 +2548,7 @@
     <Content Include="Views\Home\Partial\AddProduct.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Home\Partial\Discount.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

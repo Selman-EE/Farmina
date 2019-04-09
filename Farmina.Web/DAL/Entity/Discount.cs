@@ -23,5 +23,8 @@ namespace Farmina.Web.DAL.Entity
 		public int ThirdPercent { get; set; }
 		[DisplayName("Dördüncü Indirim Oranı")]
 		public int FourthPercent { get; set; }
+
+		[NotMapped]
+		public string ShowAllPercent => $"{FirstPercent}+{SecondPercent}+{ThirdPercent}+{FourthPercent}";
 	}
 }

@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Farmina.Web.DAL.Entity.Discount>
+
+	<label class="col-form-label" for="formGroupExampleInput">İndirim Oranı</label>
+	<select data-plugin-selectTwo class="form-control populate ddlDiscount" name="">
+		<option value="0" selected>indirim yok</option>
+		@foreach (var discount in Model)
+		{
+			<option value="@discount.ShowAllPercent">@($"{discount.Name} | {discount.ShowAllPercent}")</option>
+		}
+	</select>

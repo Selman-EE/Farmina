@@ -182,3 +182,57 @@ function htmlDecode(value) {
 	$div.remove();
 	return text;
 }
+
+function select2Search(className, elementId, searchUrl) {
+	var jqSelect2Selector = elementId ? "#" + elementId : '.' + className;
+	//
+	$(jqSelect2Selector).select2({
+		"language": {
+			"noResults": function () {
+				return "Hiçbir sonuç bulanamadı.";
+			}
+		},
+		minimumInputLength: 2,
+		maximumSelectionLength: 7,
+		formatSelectionTooBig: function (limit) {
+			return 'Bir kere en fazla (' + limit + ') adet ürün seçilebilir';
+		},
+		delay: 250,
+		allowClear: true,
+		placeholder: '--Arama yapınız--',
+		ajax: {
+			url: searchUrl,
+			dataType: 'json',
+			type: "GET",
+			quietMillis: 50,
+			data: function (params) {
+				return {
+					term: params.term
+				};
+			},
+			processResults: function (data) {
+				data = jQuery.parseJSON(data);
+				return {
+					results: $.map(data, function (item) {
+						return {
+							text: item.text,
+							id: item.id,
+							//children: item.children
+						};
+					})
+				};
+			},
+		},
+		//escapeMarkup: function (markup) { return markup; }, // let our custom formatter work
+		//templateResult: formatState,
+		//templateSelection: formatRepoSelection
+	});
+}
+
+//
+//select2 element repo selection
+function formatRepoSelection(repo) {
+	//console.log(repo);
+	$(repo.element).attr('data-test', 'test-' + repo.id);
+	return repo.text;
+}

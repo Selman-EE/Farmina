@@ -103,7 +103,7 @@
 							Müşteri Ara
 						</label>
 						<div class="col-lg-5">
-							<select data-plugin-selectTwo class="form-control populate" name="">
+							<select data-plugin-selectTwo class="form-control populate" name="" id="ddlCustomers">
 								<option value="">Sinuos Yazılım (34.1.C008)</option>
 								<option value="">Facebook (31.2.C128)</option>
 								<option value="">Google (38.6.D108)</option>
@@ -165,7 +165,7 @@
 							Satıcı Ara
 						</label>
 						<div class="col-lg-5">
-							<select data-plugin-selectTwo class="form-control populate" name="">
+							<select data-plugin-selectTwo class="form-control populate" name="" id="ddlSuppliers">
 								<option value="">Ali (108)</option>
 								<option value="">Selman (921)</option>
 								<option value="">İnan (4324)</option>
@@ -196,9 +196,9 @@
 					<div class="form-group row">
 						<label class="col-lg-2 control-label pt-2">Ürün Ara</label>
 						<div class="col-lg-5">
-							<select multiple data-plugin-selectTwo class="form-control populate">
-								<option value="" disabled>ürün kodu | barkod | ürün adı</option>
-								<option value="">3123213 | 324234632 | Test</option>
+							<select multiple data-plugin-selectTwo class="form-control populate" id="ddlProduct">
+								@*<option value="" disabled>ürün kodu | barkod | ürün adı</option>
+									<option value="">3123213 | 324234632 | Test</option>*@
 							</select>
 						</div>
 						<div class="col-lg-1">
@@ -263,3 +263,16 @@
 
 </div>
 <!-- end: page -->
+@section scripts{
+
+	<script type="text/javascript">
+
+		$(document).ready(function () {
+			select2Search(null, 'ddlProduct', '/home/searchproducts');
+			select2Search(null, 'ddlCustomers', '/home/searchcustomers');
+			select2Search(null, 'ddlSuppliers', '/home/searchsuppliers');
+			select2Search('ddlDiscount', null, '/home/searchdiscount');
+		});
+
+	</script>
+}

@@ -11,6 +11,7 @@ namespace Farmina.Web.DAL.Repository
 		List<T> Get<T>(Func<T, object> o) where T : class;
 		List<T> GetByDescending<T>(Func<T, object> o) where T : class;
 		List<T> GetFiltered<T>(Func<T, object> o, Func<T, bool> s) where T : class;
+		List<T> GetByCertainCount<T>(Func<T, object> o, int takeCount) where T : class;
 		List<T> GetWhere<T>(Func<T, bool> s) where T : class;
 		bool GetAny<T>(Func<T, bool> s) where T : class;
 		void Add<T>(T a) where T : class;

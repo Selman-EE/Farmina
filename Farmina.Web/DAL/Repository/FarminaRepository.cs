@@ -32,6 +32,10 @@ namespace Farmina.Web.DAL.Repository
 		{
 			return DbInstance.Set<T>().OrderByDescending(o).ToList();
 		}
+		public List<T> GetByCertainCount<T>(Func<T, object> o, int takeCount) where T : class
+		{
+			return DbInstance.Set<T>().Take(takeCount).OrderByDescending(o).ToList();
+		}
 
 		public List<T> GetFiltered<T>(Func<T, object> o, Func<T, bool> s) where T : class
 		{

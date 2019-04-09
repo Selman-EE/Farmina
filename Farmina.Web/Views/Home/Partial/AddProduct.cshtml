@@ -1,138 +1,79 @@
-﻿
-<div class="urun-liste">
-	<div class="row form-group">
-		<label class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput"></label>
-				<div class="form-number">1</div>
-				<div class="form-number delete"><i class="fa fa-trash"></i></div>
-			</div>
-		</label>
+﻿@model Farmina.Web.Models.AddProductModel
 
-		<div class="col-lg-2">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Ürün Adı</label>
-				<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-			</div>
-		</div>
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Fiyatı</label>
-				<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-			</div>
-		</div>
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Adet</label>
-				<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-			</div>
-		</div>
-		<div class="col-lg-2">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">İndirim Oranı</label>
-				<select data-plugin-selectTwo class="form-control populate" name="">
-					<option value="">25+2+0+0</option>
-					<option value="">14+10+5+0</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Döviz Tipi</label>
-				<input type="text" class="form-control" name="" placeholder="TL">
-			</div>
-		</div>
 
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">İndirim</label>
-				<span class="span-edit">762</span>
+@{
+	var discountHtml = Html.Partial("~/Views/Home/Partial/Discount.cshtml", Model.Discounts);
+}
+
+
+@for (int i = 1; i <= Model.Products.Count; i++)
+{
+	var item = Model.Products[i];
+	var elementId = (Model.ListIndex != 0 ? Model.ListIndex : 0) + i;
+
+	<div class="urun-liste-@elementId">
+		<input type="hidden" name="productid-@elementId" value="@item.Id" />
+		<div class="row form-group">
+			<label class="col-lg-1">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput"></label>
+					<div class="form-number">@elementId</div>
+					<div class="form-number delete-@elementId"><i class="fa fa-trash"></i></div>
+				</div>
+			</label>
+
+			<div class="col-lg-2">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput">Ürün Adı</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="" value="@item.Name">
+				</div>
+			</div>
+			<div class="col-lg-1">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput">Fiyatı</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="" value="@item.Price">
+				</div>
+			</div>
+			<div class="col-lg-1">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput">Adet</label>
+					<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="" value="@item.DefaultCount">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="form-group">
+					@Html.Raw(discountHtml)
+				</div>
+			</div>
+			<div class="col-lg-1">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput">Döviz Tipi</label>
+					<input type="text" class="form-control" name="" placeholder="TL" value="TL">
+				</div>
+			</div>
+
+			<div class="col-lg-1">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput">İndirim</label>
+					<span class="span-edit priceWithInDiscount-@elementId">@( item.Price * item.DefaultCount )</span>
+				</div>
+			</div>
+
+			<div class="col-lg-1">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput">KDV Hariç</label>
+					<span class="span-edit priceWithoutTax-@elementId">@( (item.Price * item.DefaultCount) - (item.Price * item.DefaultCount * (18 / 100)) )  </span>
+				</div>
+			</div>
+
+			<div class="col-lg-1">
+				<div class="form-group">
+					<label class="col-form-label" for="formGroupExampleInput">KDV Dahil</label>
+					<span class="span-edit priceWithTax-@elementId">@( (item.Price * item.DefaultCount) + (item.Price * item.DefaultCount * (18 / 100)) )</span>
+				</div>
 			</div>
 		</div>
-
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">KDV Hariç</label>
-				<span class="span-edit">999</span>
-			</div>
-		</div>
-
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">KDV Dahil</label>
-				<span class="span-edit">2313</span>
-			</div>
-		</div>
-
 	</div>
+}
 
-</div>
-
-<div class="urun-liste">
-	<div class="row form-group">
-		<label class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput"></label>
-				<div class="form-number">2</div>
-				<div class="form-number delete"><i class="fa fa-trash"></i></div>
-			</div>
-		</label>
-
-		<div class="col-lg-2">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Ürün Adı</label>
-				<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-			</div>
-		</div>
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Fiyatı</label>
-				<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-			</div>
-		</div>
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Adet</label>
-				<input type="text" class="form-control" id="formGroupExampleInput" name="" placeholder="">
-			</div>
-		</div>
-		<div class="col-lg-2">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">İndirim Oranı</label>
-				<select data-plugin-selectTwo class="form-control populate" name="">
-					<option value="">25+2+0+0</option>
-					<option value="">14+10+5+0</option>
-				</select>
-			</div>
-		</div>
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">Döviz Tipi</label>
-				<input type="text" class="form-control" name="" placeholder="TL">
-			</div>
-		</div>
-
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">İndirim</label>
-				<span class="span-edit">762</span>
-			</div>
-		</div>
-
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">KDV Hariç</label>
-				<span class="span-edit">999</span>
-			</div>
-		</div>
-
-		<div class="col-lg-1">
-			<div class="form-group">
-				<label class="col-form-label" for="formGroupExampleInput">KDV Dahil</label>
-				<span class="span-edit">2313</span>
-			</div>
-		</div>
-
-	</div>
-
-</div>
+<input type="hidden" name="name" value="@Model.ListIndex" />
