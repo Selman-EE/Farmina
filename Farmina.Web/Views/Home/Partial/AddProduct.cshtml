@@ -8,7 +8,7 @@
 
 @for (int i = 1; i <= Model.Products.Count; i++)
 {
-	var item = Model.Products[i];
+	var item = Model.Products[i - 1];
 	var elementId = (Model.ListIndex != 0 ? Model.ListIndex : 0) + i;
 
 	<div class="urun-liste-@elementId">
@@ -18,7 +18,7 @@
 				<div class="form-group">
 					<label class="col-form-label" for="formGroupExampleInput"></label>
 					<div class="form-number">@elementId</div>
-					<div class="form-number delete-@elementId"><i class="fa fa-trash"></i></div>
+					<div class="form-number delete delete-@elementId"><i class="fa fa-trash"></i></div>
 				</div>
 			</label>
 
@@ -76,4 +76,4 @@
 	</div>
 }
 
-<input type="hidden" name="name" value="@Model.ListIndex" class="products-list-index"/>
+<input type="hidden" name="name" value="@(Model.ListIndex > 0 ? (Model.Products.Count + Model.ListIndex) : Model.Products.Count())" class="products-list-index" />

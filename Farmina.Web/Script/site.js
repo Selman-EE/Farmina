@@ -204,13 +204,14 @@ function select2Search(className, searchUrl) {
 			dataType: 'json',
 			type: "GET",
 			quietMillis: 50,
+			delay: 500,
 			data: function (params) {
 				return {
 					term: params.term
 				};
 			},
 			processResults: function (data) {
-				data = jQuery.parseJSON(data);
+				//data = jQuery.parseJSON(data);
 				return {
 					results: $.map(data, function (item) {
 						return {
@@ -234,4 +235,27 @@ function formatRepoSelection(repo) {
 	//console.log(repo);
 	$(repo.element).attr('data-test', 'test-' + repo.id);
 	return repo.text;
+}
+
+//==============================================================
+//Extension methods
+function cleanEscapeRegExp(str) {
+    return str.replace(/([-_&".*+?^=!:${}<>()|\[\]\/\\//])/g, '');
+}
+function cleanHtmlFromSpecialChars(str) {
+    return str.replace(/([*?^!${}<>()|\[\]\\])/g, '');
+}
+
+//
+function updateQueryStringParameter(key, value, uri) {
+    if (!uri) uri = window.location.href;
+
+    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+    if (uri.match(re)) {
+        return uri.replace(re, '$1' + key + "=" + value + '$2');
+    }
+    else {
+        return uri + separator + key + "=" + value;
+    }
 }

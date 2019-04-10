@@ -207,7 +207,7 @@
 					</div>
 
 					<div class="eklenen-urunler">
-						@Html.Partial("~/Views/Home/Partial/AddProduct.cshtml")
+						@*@Html.Partial("~/Views/Home/Partial/AddProduct.cshtml")*@
 					</div>
 
 					<div class="form-group row">
@@ -268,7 +268,7 @@
 			select2Search('ddlProduct', '/home/searchproducts');
 			select2Search('ddlCustomers', '/home/searchcustomers');
 			select2Search('ddlSuppliers', '/home/searchsuppliers');
-			select2Search('ddlDiscount', '/home/searchdiscount');
+			//select2Search('ddlDiscount', '/home/searchdiscount');
 			//
 			//add products
 			addNewProducts();
@@ -284,13 +284,19 @@
 
 				if (!productIds) {
 					showNotify(false, "Ürün seçiniz önce lütfen");
+					return false;
 				}
+				/* url and querystring change */
+				var url = '/home/addproducts';
+				url = updateQueryStringParameter("productIds", productIds, url);
+				url = updateQueryStringParameter("listIndex", listIndex, url);
 
-				$.get('home/addproducts', { productIds: productIds, listIndex: listIndex }, function (data) {
-					console.log(' new employee coming from action !');
-					$('.eklenen-urunler').after(data);//add last the whole data
+				$.get(url, function (data) {
+					//console.log(' new employee coming from action !');
+					$('.eklenen-urunler').append(data);
 				}).done(function (response) {
 					hideLoading();
+					$('.ddlDiscount').select2();
 				});
 			});
 		}

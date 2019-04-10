@@ -25,10 +25,10 @@ namespace Farmina.Web.Controllers
 		}
 
 		[Route("home/addproducts")]
-		public ActionResult AddProducts(List<int> productIds, int listIndex)
+		public ActionResult AddProducts(string productIds, int listIndex)
 		{
-			var products = _fR.GetWhere<Product>(x => productIds.Contains(x.Id) && x.Status && !x.IsDeleted);
-			var discounts = _fR.GetByCertainCount<Discount>(o => o.Id, 10);
+			var products = _fR.GetWhere<Product>(x => productIds.Split(',').Contains(x.Id.ToString()) && x.Status && !x.IsDeleted);
+			var discounts = _fR.GetByDescending<Discount>(o => o.Id);
 			//
 			var data = new AddProductModel
 			{
@@ -39,18 +39,16 @@ namespace Farmina.Web.Controllers
 			return PartialView(@"~\Views\Home\Partial\AddProduct.cshtml", data);
 		}
 
-
-
-
 		[HttpGet]
 		[Route("home/searchproducts")]
 		public JsonResult SearchProducts(string term)
 		{
-			var data = _fR.GetWhere<Product>(x => x.Name.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				&& x.Barcode.ToLowerInvariant().Contains(term?.Trim() ?? "")
-				&& x.Code.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				&& x.Status && !x.IsDeleted)
-				.Select(s => new { id = s.Id, text = s.Name });
+			var data = _fR.GetFiltered<Product>(o => o.Name,
+				x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()) ||
+				x.Barcode.ToLowerInvariant().Contains(term.Trim()) ||
+				x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))
+				.Where(x => x.Status && !x.IsDeleted)
+				.Select(s => new { id = s.Id, text = $"{s.Name} | {s.Barcode} | {s.Code}" });
 
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
@@ -59,9 +57,9 @@ namespace Farmina.Web.Controllers
 		public JsonResult SearchCustomers(string term)
 		{
 			var data = _fR.GetWhere<Company>(x => x.Name.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				&& x.CustomerCode.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				&& x.Status && !x.IsDeleted)
-				.Select(s => new { id = s.Id, text = s.Name });
+				|| x.CustomerCode.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? ""))
+				.Where(x => x.Status && !x.IsDeleted)
+				.Select(s => new { id = s.Id, text = $"{s.Name} ({s.CustomerCode})" });
 
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
@@ -70,23 +68,23 @@ namespace Farmina.Web.Controllers
 		public JsonResult SearchSuppliers(string term)
 		{
 			var data = _fR.GetWhere<Supplier>(x => x.Name.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				&& x.Code.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				&& x.Status && !x.IsDeleted)
-				.Select(s => new { id = s.Id, text = s.Name });
+				|| x.Code.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? ""))
+				.Where(x => x.Status && !x.IsDeleted)
+				.Select(s => new { id = s.Id, text = $"{s.Name} ({s.Code})" });
 
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
-		[HttpGet]
-		[Route("home/searchdiscount")]
-		public JsonResult SearchDiscounts(string term)
-		{
-			var data = _fR.GetWhere<Discount>(x => x.Name.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-			&& x.ShowAllPercent.Contains(term?.Trim()?.ToLowerInvariant() ?? ""))
-			.Select(s => new { id = s.ShowAllPercent, text = $"{s.Name} | {s.ShowAllPercent}", selected = false }).ToList();
-			//
-			data.Insert(0, new { id = "0", text = "indirim yok", selected = true });
-			return Json(data, JsonRequestBehavior.AllowGet);
+		//[HttpGet]
+		//[Route("home/searchdiscount")]
+		//public JsonResult SearchDiscounts(string term)
+		//{
+		//	var data = _fR.GetWhere<Discount>(x => x.Name.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
+		//	&& x.ShowAllPercent.Contains(term?.Trim()?.ToLowerInvariant() ?? ""))
+		//	.Select(s => new { id = s.ShowAllPercent, text = $"{s.Name} | {s.ShowAllPercent}", selected = false }).ToList();
+		//	//
+		//	data.Insert(0, new { id = "0", text = "indirim yok", selected = true });
+		//	return Json(data, JsonRequestBehavior.AllowGet);
 
-		}
+		//}
 	}
 }
