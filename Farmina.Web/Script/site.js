@@ -183,10 +183,9 @@ function htmlDecode(value) {
 	return text;
 }
 
-function select2Search(className, elementId, searchUrl) {
-	var jqSelect2Selector = elementId ? "#" + elementId : '.' + className;
+function select2Search(className, searchUrl) {
 	//
-	$(jqSelect2Selector).select2({
+	$('.' + className).select2({
 		"language": {
 			"noResults": function () {
 				return "Hiçbir sonuç bulanamadı.";

@@ -5,7 +5,7 @@
 }
 
 <header class="page-header">
-	<h2>Ana Sayfa - @ViewBag.CompanyList.Name</h2>
+	<h2>Ana Sayfa</h2>
 </header>
 
 <!-- start: page -->
@@ -103,7 +103,7 @@
 							Müşteri Ara
 						</label>
 						<div class="col-lg-5">
-							<select data-plugin-selectTwo class="form-control populate" name="" id="ddlCustomers">
+							<select data-plugin-selectTwo class="form-control populate ddlCustomers" name="" id="">
 								<option value="">Sinuos Yazılım (34.1.C008)</option>
 								<option value="">Facebook (31.2.C128)</option>
 								<option value="">Google (38.6.D108)</option>
@@ -165,7 +165,7 @@
 							Satıcı Ara
 						</label>
 						<div class="col-lg-5">
-							<select data-plugin-selectTwo class="form-control populate" name="" id="ddlSuppliers">
+							<select data-plugin-selectTwo class="form-control populate ddlSuppliers" name="" id="">
 								<option value="">Ali (108)</option>
 								<option value="">Selman (921)</option>
 								<option value="">İnan (4324)</option>
@@ -196,7 +196,7 @@
 					<div class="form-group row">
 						<label class="col-lg-2 control-label pt-2">Ürün Ara</label>
 						<div class="col-lg-5">
-							<select multiple data-plugin-selectTwo class="form-control populate" id="ddlProduct">
+							<select multiple data-plugin-selectTwo class="form-control populate ddlProduct" id="">
 								@*<option value="" disabled>ürün kodu | barkod | ürün adı</option>
 									<option value="">3123213 | 324234632 | Test</option>*@
 							</select>
@@ -209,9 +209,6 @@
 					<div class="eklenen-urunler">
 						@Html.Partial("~/Views/Home/Partial/AddProduct.cshtml")
 					</div>
-
-
-
 
 					<div class="form-group row">
 						<div class="col-lg-6">
@@ -268,11 +265,34 @@
 	<script type="text/javascript">
 
 		$(document).ready(function () {
-			select2Search(null, 'ddlProduct', '/home/searchproducts');
-			select2Search(null, 'ddlCustomers', '/home/searchcustomers');
-			select2Search(null, 'ddlSuppliers', '/home/searchsuppliers');
-			select2Search('ddlDiscount', null, '/home/searchdiscount');
+			select2Search('ddlProduct', '/home/searchproducts');
+			select2Search('ddlCustomers', '/home/searchcustomers');
+			select2Search('ddlSuppliers', '/home/searchsuppliers');
+			select2Search('ddlDiscount', '/home/searchdiscount');
+			//
+			//add products
+			addNewProducts();
 		});
 
+		function addNewProducts() {
+			$('#btnAddProduct').click(function (e) {
+				e.preventDefault();
+				showLoading();
+				//
+				var listIndex = $('.products-list-index').last().val() || 0;
+				var productIds = $('.ddlProduct').val();
+
+				if (!productIds) {
+					showNotify(false, "Ürün seçiniz önce lütfen");
+				}
+
+				$.get('home/addproducts', { productIds: productIds, listIndex: listIndex }, function (data) {
+					console.log(' new employee coming from action !');
+					$('.eklenen-urunler').after(data);//add last the whole data
+				}).done(function (response) {
+					hideLoading();
+				});
+			});
+		}
 	</script>
 }
