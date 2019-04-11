@@ -17,7 +17,7 @@ namespace Farmina.Web.DAL.Entity
 
 		[Key, Column(Order = 0)]
 		public int Id { get; set; }
-
+		public string PlatformCode { get; set; }
 		public int VoucherNumber { get; set; }
 		public DateTime VoucherDate { get; set; }
 		public int Tax { get; set; }

@@ -125,5 +125,10 @@ namespace Farmina.Web.DAL.Repository
 			GC.SuppressFinalize(this);
 		}
 		#endregion
+
+		public int GetLastVoucherNumber()
+		{
+			return DbInstance.Orders.Where(x => x.Status && !x.IsDeleted).OrderByDescending(o => o.VoucherNumber)?.FirstOrDefault()?.VoucherNumber ?? 0;
+		}
 	}
 }

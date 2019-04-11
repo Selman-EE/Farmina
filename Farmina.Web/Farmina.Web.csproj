@@ -2140,6 +2140,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AddProductModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\SaveVoucherJsonModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

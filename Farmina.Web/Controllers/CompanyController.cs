@@ -52,6 +52,7 @@ namespace Farmina.Web.Controllers
 				return RedirectToAction("Index");
 			//
 			companyEntity.Name = company.Name?.Trim();
+			companyEntity.Country = company.Country?.Trim();
 			companyEntity.Region = company.Region?.Trim();
 			companyEntity.TaxNumber = company.TaxNumber?.Trim();
 			companyEntity.ZipCode = company.ZipCode?.Trim();

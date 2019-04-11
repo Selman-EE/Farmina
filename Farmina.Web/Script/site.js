@@ -33,7 +33,6 @@ else {
 
 function showNotify(status, message) {
 	new PNotify({
-		//title: status ? 'Success' : 'Error',
 		title: status ? 'İşlem başarılı' : 'Hata',
 		text: message || "",
 		type: status ? 'success' : 'error'

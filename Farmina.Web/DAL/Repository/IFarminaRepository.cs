@@ -20,5 +20,8 @@ namespace Farmina.Web.DAL.Repository
 		void Remove<T>(T u) where T : class;
 		void SaveChanges();
 		void Dispose();
+
+		//private methods
+		int GetLastVoucherNumber();
 	}
 }
