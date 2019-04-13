@@ -29,6 +29,7 @@ namespace Farmina.Web.Controllers
 			return View();
 		}
 
+		#region create voucher as text file
 		[Route("voucher/createvoucher")]
 		public ActionResult GetVoucher(string date)
 		{
@@ -50,17 +51,13 @@ namespace Farmina.Web.Controllers
 			if (order.Count <= 0)
 				return Json(new Response { Status = false, Message = "Aradığnız tarih için belge bulunamadı." }, JsonRequestBehavior.AllowGet);
 
-			string vDate = voucherDate.ToString("yyyy-MM-dd");
-			string directory = Server.MapPath("~/Voucher");
-			if (!Directory.Exists(directory))
-				Directory.CreateDirectory(directory);
 			//
-			directory = Path.Combine(directory, vDate);
+			string directory = Server.MapPath("~/_Voucher");
 			if (!Directory.Exists(directory))
 				Directory.CreateDirectory(directory);
 			//
 			//
-			string filePath = Path.Combine(directory, $"{vDate}.txt");
+			string filePath = Path.Combine(directory, $"{voucherDate:yyyy-MM-dd}.txt");
 			//
 			try
 			{
@@ -95,7 +92,7 @@ namespace Farmina.Web.Controllers
 							//
 							var totalWithTax = total + (total * (item.Tax / 100));
 							//
-							var productLine = $"{op.Product.Code};{op.Product.Barcode};{op.Product.Name};{op.Quantity};{op.Price:0.00};{op.DiscountName};{totalDiscountPrice};{total:0.00};{totalWithTax:0.00};TL;";
+							var productLine = $"{op.Product.Code};{op.Product.Barcode};{op.Product.Name};{op.Quantity};{op.Price:0.##};{op.DiscountName};{totalDiscountPrice:0.##};{total:0.##};{totalWithTax:0.##};TL;";
 							//
 							sw.WriteLine("{0}", voucherStartLine + productLine);
 						}
@@ -109,33 +106,43 @@ namespace Farmina.Web.Controllers
 				return Json(new Response { Status = false, Message = "Tarih formatı yanlış Lütfen sayfayı yenileyip tekrar deneyin" }, JsonRequestBehavior.AllowGet);
 			}
 		}
+		#endregion
 
+		#region download vouchers
 		[Route("download/vouchers")]
 		[DeleteFile]
 		public FileContentResult DownloadVoucher(string filePath)
 		{
-			//System.IO.FileStream stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open);
-			//return File(stream, MediaTypeNames.Text.Plain, Path.GetFileName(filePath));
-			//Response.AppendHeader("content-disposition", $"attachment;filename={Path.GetFileName(filePath)}");
-
+			if (!System.IO.File.Exists(filePath))
+				return null;
+			//
 			var bytes = System.IO.File.ReadAllBytes(filePath);
 			//
-			//System.IO.File.Delete(filePath);
+			System.IO.File.Delete(filePath);
 			Response.AppendHeader("content-disposition", $"attachment;filename={Path.GetFileName(filePath)}");
 			return new FileContentResult(bytes, MediaTypeNames.Text.Plain);
 		}
 
-
-		//[Route("vouchers/remove")]
-		//public ActionResult RemoveVoucher(string filePath)
+		// download a text file as an attachment
+		//note: FileStream den sonra dosyayi silemez bunu icin action filter kullanmak gerek 
+		//[Route("download/vouchers")]
+		//[DeleteFile]
+		//public FileStreamResult DownloadTextFile(string filePath)
 		//{
-		//	if (!System.IO.File.Exists(filePath))
-		//		return Json(new Response { Status = false, Message = filePath }, JsonRequestBehavior.AllowGet);
-		//	//
-		//	System.IO.File.Delete(filePath);
-		//	return Json(new Response { Status = true, Message = filePath }, JsonRequestBehavior.AllowGet);
+		//	if (System.IO.File.Exists(filePath))
+		//	{
+		//		Response.AppendHeader("content-disposition", $"attachment;filename={Path.GetFileName(filePath)}");
+		//		System.IO.FileStream stream = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite, FileShare.None, 4096, FileOptions.DeleteOnClose);
+		//		System.IO.File.Delete(filePath);
+		//		return new FileStreamResult(stream, "text/plain"); // the constructor will fire Dispose() when done
+		//	}
+		//	else
+		//		return null;
 		//}
 
+		#endregion
+
+		#region save voucher 
 		[Route("home/savevoucher")]
 		public ActionResult Save(SaveVoucherJsonModel model)
 		{
@@ -209,6 +216,10 @@ namespace Farmina.Web.Controllers
 				}
 			}
 		}
+
+		#endregion
+
+		#region Search entities from Select2
 
 		[Route("home/addproducts")]
 		public ActionResult AddProducts(string productIds, int listIndex)
@@ -286,6 +297,7 @@ namespace Farmina.Web.Controllers
 		//	data.Insert(0, new { id = "0", text = "indirim yok", selected = true });
 		//	return Json(data, JsonRequestBehavior.AllowGet);
 
-		//}
+		//} 
+		#endregion
 	}
 }
