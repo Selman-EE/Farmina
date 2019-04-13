@@ -14,6 +14,7 @@ namespace Farmina.Web.DAL.Entity
 		public decimal Price { get; set; }
 		public int Quantity { get; set; }
 		public string Discount { get; set; }
+		public string DiscountName { get; set; }
 		[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:N0}")]
 		public decimal Total { get; set; }
 

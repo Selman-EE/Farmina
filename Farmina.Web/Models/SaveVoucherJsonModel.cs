@@ -31,5 +31,6 @@ namespace Farmina.Web.Models
 		public string ProductPrice { get; set; }
 		public int ProductQuantity { get; set; }
 		public string ProductDiscount { get; set; }
+		public string ProductDiscountName { get; set; }
 	}
 }

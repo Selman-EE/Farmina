@@ -25,6 +25,8 @@ namespace Farmina.Web.DAL.Entity
 		public string ZipCode { get; set; }
 		[DisplayName("Ülke")]
 		public string Country { get; set; }
+		[DisplayName("Ülke Kodu")]
+		public string CountryCode { get; set; }
 		[DisplayName("Şehir")]
 		public string City { get; set; }
 		[DisplayName("Adres")]

@@ -41,9 +41,8 @@
 								<td>@(item.VoucherDate.ToString("dd.MM.yyyy"))</td>
 								<td>@item.CreatedDate</td>
 								<td>@item.UpdatedDate</td>
-								<td>@item.</td>
 								<td class="table-actions">
-									<a href="@Url.Action("Details","Order", new { id = item.Id })"><i class="fa fa-edit" style="font-size: large;"></i></a> &nbsp;
+									<a href="@Url.Action("Details","Order", new { id = item.Id })"><i class="fa fa-forward" style="font-size: large;"></i></a> &nbsp;
 									<a href="#" onclick="deleteEntity('@item.Id','@Url.Action("Delete","Order")')" class="on-default remove-row"><i class="fa fa-trash" style="font-size: large;"></i></a>
 								</td>
 							</tr>

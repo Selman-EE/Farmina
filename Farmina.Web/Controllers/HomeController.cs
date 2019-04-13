@@ -4,8 +4,10 @@ using Farmina.Web.DAL.Repository;
 using Farmina.Web.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Mime;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,6 +28,104 @@ namespace Farmina.Web.Controllers
 
 			return View();
 		}
+
+		[Route("voucher/createvoucher")]
+		public ActionResult GetVoucher(string date)
+		{
+			//
+			//order date parse useable datetime format
+			DateTime voucherDate;
+			try
+			{
+				voucherDate = DateTime.ParseExact(date, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+			}
+			catch
+			{
+				return Json(new Response { Status = false, Message = "Tarih formatı yanlış Lütfen sayfayı yenileyip tekrar deneyin" }, JsonRequestBehavior.AllowGet);
+			}
+
+
+			string vDate = voucherDate.ToString("yyyy-MM-dd");
+			string directory = Server.MapPath("~/Voucher");
+			if (!Directory.Exists(directory))
+				Directory.CreateDirectory(directory);
+			//
+			directory = Path.Combine(directory, vDate);
+			if (!Directory.Exists(directory))
+				Directory.CreateDirectory(directory);
+			//
+			//
+			string filePath = Path.Combine(directory, $"/{vDate}.txt");
+			//
+			try
+			{
+				// Check if file already exists. If yes, delete it.     
+				if (System.IO.File.Exists(filePath))
+				{
+					System.IO.File.Delete(filePath);
+				}
+
+				var order = _fR.GetWhere<Order>(x => (x.VoucherDate - voucherDate.Date).TotalDays == 0);
+
+				// Create a new file     
+				using (System.IO.StreamWriter sw = System.IO.File.CreateText(filePath))
+				{
+					foreach (var item in order)
+					{
+
+						//This is example of one line will create in text file
+						//{Platform kodu = TR Farmina}; {satici kodu}; {satici adi}; {belge tarihi} ;Invoice;  {Belge No};{Musteri kodu}; {musteri adi};{vergi no};{ulke kodu}; {bolge}; {posta kodu}; {Sehir}; {adres}; {urun kodu}; {urun barkodu}; {urun ismi}; {adet}; {fiyat}; {indirimin adi};{indirim tutar};{toplam Kdvsiz }; {toplam kdv li};TL;
+
+						var voucherStartLine = $"{item.PlatformCode};{item.Supplier.Code};{item.Supplier.Name};{item.VoucherDate:yyyy-MM-dd};Invoice;{item.VoucherNumber};{item.Company.CustomerCode};{item.Company.Name};{item.Company.TaxNumber};{item.Company.CountryCode};{item.Company.Region};{item.Company.ZipCode};{item.Company.City};{item.Company.Address};";
+
+						foreach (var op in item.OrderProducts)
+						{
+							var total = op.Price * op.Quantity;
+							var totalDiscountPrice = 0M;
+							var discountRates = op.Discount.Split('+').Where(x => int.Parse(x) > 0).Select(s => int.Parse(s));
+							foreach (var discount in discountRates)
+							{
+								totalDiscountPrice += total * (discount / 100);
+								total = total - (total * (discount / 100));
+							}
+							var totalWithTax = total + (total * (item.Tax / 100));
+							//
+							var productLine = $"{op.Product.Code};{op.Product.Barcode};{op.Product.Name};{op.Quantity};{op.Price:0.00};{op.DiscountName};{totalDiscountPrice};{total};{totalWithTax};TL;";
+							//
+							sw.WriteLine("{0}", voucherStartLine + productLine);
+						}
+					}
+				}
+
+				return Json(new Response { Status = true, Message = filePath }, JsonRequestBehavior.AllowGet);
+			}
+			catch (Exception Ex)
+			{
+				return Json(new Response { Status = false, Message = "Tarih formatı yanlış Lütfen sayfayı yenileyip tekrar deneyin" }, JsonRequestBehavior.AllowGet);
+			}
+		}
+
+		[Route("download/vouchers")]
+		public ActionResult DownloadVoucher(string filePath)
+		{
+			//System.IO.FileStream stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open);
+			//return File(stream, MediaTypeNames.Text.Plain, Path.GetFileName(filePath));
+			//Response.AppendHeader("content-disposition", $"attachment;filename={Path.GetFileName(filePath)}");
+			try
+			{
+				return File(filePath, MediaTypeNames.Text.Plain);
+			}
+			catch (Exception)
+			{
+				return RedirectToAction("Index");
+			}
+			finally
+			{
+				System.Threading.Thread.Sleep(2000);
+				System.IO.File.Delete(filePath);
+			}
+		}
+
 		[Route("home/savevoucher")]
 		public ActionResult Save(SaveVoucherJsonModel model)
 		{
@@ -74,6 +174,7 @@ namespace Farmina.Web.Controllers
 							ProductId = item.ProductId,
 							ProductName = item.ProductName,
 							Discount = item.ProductDiscount,
+							DiscountName = item.ProductDiscountName,
 							Quantity = item.ProductQuantity,
 							Price = string.IsNullOrEmpty(item.ProductPrice) ? 0 : Convert.ToDecimal(item.ProductPrice),
 						};

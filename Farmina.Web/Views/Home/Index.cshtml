@@ -2,6 +2,8 @@
 @{
 	/**/
 
+	/**/
+
 	ViewBag.Title = "Anasayfa";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 
@@ -31,7 +33,7 @@
 				</div>
 				<div id="collapse2PrimaryOne" class="collapse" style="">
 					<div class="card-body">
-						<form class="form-inline">
+						<form class="form-inline" id="dailyInvoices">
 
 							<!--todo: Ali burada ingilizce geliyor gunler aylar TR olsun-->
 							<div class="col-lg-6">
@@ -41,10 +43,11 @@
 											<i class="fas fa-calendar-alt"></i>
 										</span>
 									</span>
-									<input type="text" data-plugin-datepicker class="form-control">
+									<input type="text" data-plugin-datepicker class="form-control" id="reportVoucherDate">
 								</div>
 							</div>
 							<button type="button" id="btnGetAllDailyInvoices" class="btn btn-primary">Günlük Rapor Al</button>
+
 						</form>
 					</div>
 				</div>
@@ -241,6 +244,8 @@
 			getSupplierById();
 			//
 			removeProduct();
+			//
+			downloadVouchers();
 
 			//$("body").on('DOMSubtreeModified', ".eklenen-urunler", function () {
 			//	//console.log(true);
@@ -446,7 +451,10 @@
 					}
 
 					var productId = $(element).find('input[name=productid-' + elementId + ']').val();
-					var productDiscount = $(element).find('.productDiscount-' + elementId).find('.ddlDiscount').val();
+
+					var pd = $(element).find('.productDiscount-' + elementId).find('.ddlDiscount').val().split('|');
+					var productDiscount = pd[1]
+					var productDiscountName = pd[0];
 					//
 					var product = {};
 					product.ProductId = productId;
@@ -454,6 +462,7 @@
 					product.ProductPrice = productPrice;
 					product.ProductQuantity = productQuantity;
 					product.ProductDiscount = productDiscount;
+					product.ProductDiscountName = productDiscountName;
 					products.push(product);
 				});
 
@@ -478,6 +487,7 @@
 					success: function (data) {
 						if (data.Status) {
 							clearForm();
+							$('#txtVoucherNo').val(data.EntityId);
 						}
 						showNotify(data.Status, data.Message);
 					},
@@ -503,6 +513,42 @@
 			//clear select2
 			$('.ddlProduct,.ddlCustomers,.ddlSuppliers').val('').trigger('change');
 		}
+		//
+		//download voucher
+		function downloadVouchers() {
+
+			$('#btnGetAllDailyInvoices').click(function (e) {
+				e.preventDefault();
+				//
+				//
+				var voucherDate = $('#reportVoucherDate').val();
+				if (!voucherDate) {
+					showNotify(false, "Lütfen tarih seçiniz...");
+					return false;
+				}
+				//
+				showLoading();
+				//
+				var url = '/voucher/createvoucher';
+				$.get(url, { date: voucherDate }, function (data) {
+					//
+					if (data.Status) {
+						/* url and querystring change */
+						url = '/download/vouchers';
+						url = updateQueryStringParameter("filePath", productIds, url);
+						$('#reportVoucherDate').append('<a onclick="(function(_this){_this.parentNode.removeChild(_this);})(this);">İndir</a>').attr('href', url);
+					} else {
+						showNotify(data.Status, data.Message);
+					}
+
+				}).done(function (response) {
+					hideLoading();
+				});
+
+
+
+			});
+
 
 
 	</script>
