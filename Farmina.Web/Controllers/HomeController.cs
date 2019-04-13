@@ -45,6 +45,11 @@ namespace Farmina.Web.Controllers
 			}
 
 
+			var order = _fR.GetWhere<Order>(x => (x.VoucherDate - voucherDate.Date).TotalDays == 0);
+
+			if (order.Count <= 0)
+				return Json(new Response { Status = false, Message = "Aradığnız tarih için belge bulunamadı." }, JsonRequestBehavior.AllowGet);
+
 			string vDate = voucherDate.ToString("yyyy-MM-dd");
 			string directory = Server.MapPath("~/Voucher");
 			if (!Directory.Exists(directory))
@@ -55,17 +60,13 @@ namespace Farmina.Web.Controllers
 				Directory.CreateDirectory(directory);
 			//
 			//
-			string filePath = Path.Combine(directory, $"/{vDate}.txt");
+			string filePath = Path.Combine(directory, $"{vDate}.txt");
 			//
 			try
 			{
 				// Check if file already exists. If yes, delete it.     
 				if (System.IO.File.Exists(filePath))
-				{
 					System.IO.File.Delete(filePath);
-				}
-
-				var order = _fR.GetWhere<Order>(x => (x.VoucherDate - voucherDate.Date).TotalDays == 0);
 
 				// Create a new file     
 				using (System.IO.StreamWriter sw = System.IO.File.CreateText(filePath))
@@ -83,14 +84,18 @@ namespace Farmina.Web.Controllers
 							var total = op.Price * op.Quantity;
 							var totalDiscountPrice = 0M;
 							var discountRates = op.Discount.Split('+').Where(x => int.Parse(x) > 0).Select(s => int.Parse(s));
-							foreach (var discount in discountRates)
+							if (discountRates.Count() > 0)
 							{
-								totalDiscountPrice += total * (discount / 100);
-								total = total - (total * (discount / 100));
+								foreach (var discount in discountRates)
+								{
+									totalDiscountPrice += total * (discount / 100);
+									total = total - (total * (discount / 100));
+								}
 							}
+							//
 							var totalWithTax = total + (total * (item.Tax / 100));
 							//
-							var productLine = $"{op.Product.Code};{op.Product.Barcode};{op.Product.Name};{op.Quantity};{op.Price:0.00};{op.DiscountName};{totalDiscountPrice};{total};{totalWithTax};TL;";
+							var productLine = $"{op.Product.Code};{op.Product.Barcode};{op.Product.Name};{op.Quantity};{op.Price:0.00};{op.DiscountName};{totalDiscountPrice};{total:0.00};{totalWithTax:0.00};TL;";
 							//
 							sw.WriteLine("{0}", voucherStartLine + productLine);
 						}
@@ -106,25 +111,30 @@ namespace Farmina.Web.Controllers
 		}
 
 		[Route("download/vouchers")]
-		public ActionResult DownloadVoucher(string filePath)
+		[DeleteFile]
+		public FileContentResult DownloadVoucher(string filePath)
 		{
 			//System.IO.FileStream stream = new System.IO.FileStream(filePath, System.IO.FileMode.Open);
 			//return File(stream, MediaTypeNames.Text.Plain, Path.GetFileName(filePath));
 			//Response.AppendHeader("content-disposition", $"attachment;filename={Path.GetFileName(filePath)}");
-			try
-			{
-				return File(filePath, MediaTypeNames.Text.Plain);
-			}
-			catch (Exception)
-			{
-				return RedirectToAction("Index");
-			}
-			finally
-			{
-				System.Threading.Thread.Sleep(2000);
-				System.IO.File.Delete(filePath);
-			}
+
+			var bytes = System.IO.File.ReadAllBytes(filePath);
+			//
+			//System.IO.File.Delete(filePath);
+			Response.AppendHeader("content-disposition", $"attachment;filename={Path.GetFileName(filePath)}");
+			return new FileContentResult(bytes, MediaTypeNames.Text.Plain);
 		}
+
+
+		//[Route("vouchers/remove")]
+		//public ActionResult RemoveVoucher(string filePath)
+		//{
+		//	if (!System.IO.File.Exists(filePath))
+		//		return Json(new Response { Status = false, Message = filePath }, JsonRequestBehavior.AllowGet);
+		//	//
+		//	System.IO.File.Delete(filePath);
+		//	return Json(new Response { Status = true, Message = filePath }, JsonRequestBehavior.AllowGet);
+		//}
 
 		[Route("home/savevoucher")]
 		public ActionResult Save(SaveVoucherJsonModel model)

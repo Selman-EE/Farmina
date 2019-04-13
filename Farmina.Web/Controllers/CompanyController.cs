@@ -53,6 +53,7 @@ namespace Farmina.Web.Controllers
 			//
 			companyEntity.Name = company.Name?.Trim();
 			companyEntity.Country = company.Country?.Trim();
+			companyEntity.CountryCode = company.CountryCode?.Trim();
 			companyEntity.Region = company.Region?.Trim();
 			companyEntity.TaxNumber = company.TaxNumber?.Trim();
 			companyEntity.ZipCode = company.ZipCode?.Trim();

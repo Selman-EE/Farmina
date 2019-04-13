@@ -4,6 +4,7 @@ using Farmina.Web.Extension;
 using Farmina.Web.Helper;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
@@ -15,7 +16,14 @@ namespace Farmina.Web.Controllers
 	[CustomExceptionHandler]
 	[AccountAuthorizeAttribute]
 	public class BaseController : Controller
-	{ }
+	{
+		//protected FileContentResult TemporaryFile(string fileName, string contentType, string fileDownloadName)
+		//{
+		//	var bytes = System.IO.File.ReadAllBytes(fileName);
+		//	System.IO.File.Delete(fileName);
+		//	return File(bytes, contentType, fileDownloadName);
+		//}
+	}
 
 	//========================================================================================================================
 	// Attribute: Login Control and Role Control
@@ -104,5 +112,19 @@ namespace Farmina.Web.Controllers
 	}
 
 	#endregion
+
+
+	public class DeleteFile : ActionFilterAttribute
+	{
+		public override void OnResultExecuted(ResultExecutedContext filterContext)
+		{
+			filterContext.HttpContext.Response.Flush();
+			var filePath = filterContext.HttpContext.Request.RawUrl.Split('?')[1];
+			filePath = filePath.Substring(filePath.IndexOf('=') + 1);
+			File.Delete(filePath);
+
+		}
+
+	}
 
 }

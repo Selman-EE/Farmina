@@ -29,7 +29,7 @@
 			Belge Tarihi
 		</dt>
 		<dd>
-			@Html.DisplayFor(model => model.VoucherDate)
+			@(Model.VoucherDate.ToString("dd.MM.yyyy"))
 		</dd>
 		<dt>
 			Belge No
@@ -61,10 +61,10 @@
 	@for (int i = 1; i <= productList.Count; i++)
 	{
 		var item = productList[i - 1];
-		<span>@i</span><br />
+		<span>@i</span>
 		<span>@item.ProductName</span>
 		<span>@item.Quantity</span>
-		<span>@item.Price</span>
+		<span>@(item.Price.ToString("0.00"))</span>
 		<span>@item.Discount</span>
 		<span>@item.Total</span>
 		<br />

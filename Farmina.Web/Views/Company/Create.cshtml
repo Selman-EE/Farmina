@@ -5,6 +5,7 @@
 	Layout = "~/Views/Shared/_Layout.cshtml";
 
 	var isUpdate = Model != null ? (Model.Id > 0 ? true : false) : false;
+	var countryCode = Model != null ? (string.IsNullOrEmpty(Model.CountryCode) ? "TR" : Model.CountryCode) : "TR";
 }
 
 <header class="page-header">
@@ -62,7 +63,7 @@
 					</div>	<div class="form-group">
 						@Html.LabelFor(model => model.CountryCode, htmlAttributes: new { @class = "control-label col-md-2" })
 						<div class="col-md-10">
-							@Html.EditorFor(model => model.CountryCode, new { htmlAttributes = new { @class = "form-control" } })
+							@Html.EditorFor(model => model.CountryCode, new { htmlAttributes = new { @class = "form-control", @Value = countryCode } })
 							@Html.ValidationMessageFor(model => model.CountryCode, "", new { @class = "text-danger" })
 						</div>
 					</div>
