@@ -254,22 +254,14 @@ namespace Farmina.Web.Controllers
 		[Route("home/searchproducts")]
 		public JsonResult SearchProducts(string term)
 		{
-			var data = _fR.GetFiltered<Product>(o => o.Name,
-				x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()) ||
-				x.Barcode.ToLowerInvariant().Contains(term.Trim()) ||
-				x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))
-				.Where(x => x.Status && !x.IsDeleted)
-				.Select(s => new { id = s.Id, text = $"{s.Name} | {s.Barcode} | {s.Code}" });
-
+			var data = _fR.SearchProducts(term, 30).Select(s => new { id = s.Id, text = $"{s.Name} | {s.Barcode} | {s.Code}" });
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 		[HttpGet]
 		[Route("home/searchcustomers")]
 		public JsonResult SearchCustomers(string term)
 		{
-			var data = _fR.GetWhere<Company>(x => (x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
-				|| x.CustomerCode.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())) && (x.Status && !x.IsDeleted))
-				.Select(s => new { id = s.Id, text = $"{s.Name} ({s.CustomerCode})" });
+			var data = _fR.SearchCustomers(term, 30).Select(s => new { id = s.Id, text = $"{s.Name} ({s.CustomerCode})" });
 
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
@@ -277,10 +269,7 @@ namespace Farmina.Web.Controllers
 		[Route("home/searchsuppliers")]
 		public JsonResult SearchSuppliers(string term)
 		{
-			var data = _fR.GetWhere<Supplier>(x => (x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
-				|| x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())) && (x.Status && !x.IsDeleted))
-				.Select(s => new { id = s.Id, text = $"{s.Name} ({s.Code})" });
-
+			var data = _fR.SearchSuppliers(term, 30).Select(s => new { id = s.Id, text = $"{s.Name} ({s.Code})" });
 			return Json(data, JsonRequestBehavior.AllowGet);
 		}
 		//[HttpGet]

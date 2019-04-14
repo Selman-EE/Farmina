@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Farmina.Web.DAL.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,7 +22,11 @@ namespace Farmina.Web.DAL.Repository
 		void SaveChanges();
 		void Dispose();
 
-		//private methods
+		//Custom methods
 		int GetLastVoucherNumber();
+
+		List<Product> SearchProducts(string term, int takeCount);
+		List<Company> SearchCustomers(string term, int takeCount);
+		List<Supplier> SearchSuppliers(string term, int takeCount);
 	}
 }

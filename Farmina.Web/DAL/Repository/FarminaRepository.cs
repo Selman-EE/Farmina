@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Farmina.Web.DAL.Entity;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -126,9 +127,40 @@ namespace Farmina.Web.DAL.Repository
 		}
 		#endregion
 
+		#region Customize methods
 		public int GetLastVoucherNumber()
 		{
 			return DbInstance.Orders.Where(x => x.Status && !x.IsDeleted).OrderByDescending(o => o.VoucherNumber)?.FirstOrDefault()?.VoucherNumber ?? 0;
 		}
+
+		public List<Product> SearchProducts(string term, int takeCount)
+		{
+			if (string.IsNullOrEmpty(term))
+				return new List<Product>();
+			//
+			return DbInstance.Products?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()) ||
+				 x.Barcode.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()) ||
+				 x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))?.Take(takeCount)?.ToList() ?? new List<Product>();
+		}
+		public List<Company> SearchCustomers(string term, int takeCount)
+		{
+			if (string.IsNullOrEmpty(term))
+				return new List<Company>();
+			//
+			return DbInstance.Companies?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
+				|| x.CustomerCode.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))?.Take(takeCount)?.ToList() ?? new List<Company>();
+		}
+		public List<Supplier> SearchSuppliers(string term, int takeCount)
+		{
+			if (string.IsNullOrEmpty(term))
+				return new List<Supplier>();
+			//
+			return DbInstance.Suppliers?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
+				|| x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))?.Take(takeCount)?.ToList() ?? new List<Supplier>();
+		}
+
+		#endregion
+
+
 	}
 }
