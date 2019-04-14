@@ -59,7 +59,19 @@
 					<h2 class="title text-uppercase font-weight-bold m-0"><i class="fas fa-user mr-1"></i> GİRİŞ</h2>
 				</div>
                 <div class="card-body">
-                    <p class="text-danger">@Html.ValidationMessage("ErrorMessage")</p>
+
+
+                    @{
+                        var errorMes = Html.ValidationMessage("ErrorMessage");
+                        if (string.IsNullOrEmpty(errorMes?.ToString() ?? ""))
+                        {
+                            <div class="alert alert-danger">
+                                <span class="text-danger">@Html.Raw(errorMes)</span>
+                            </div>
+                        }
+                    }
+                    
+                    
                     <form action="/Account/Login" method="post">
                         <div class="form-group mb-3">
                             <label>Kullanıcı Adı</label>

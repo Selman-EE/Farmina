@@ -51,7 +51,7 @@ namespace Farmina.Web.Controllers
 				return View("Login", model);
 			}
 
-			if (model.Username?.Trim().ToLower() != "Username".GetAppSetting().ToLower() || model.Password?.Trim() != "Admin".GetAppSetting())
+			if (model.Username?.Trim().ToLower() != "Username".GetAppSetting().ToLower() || model.Password?.Trim() != "Password".GetAppSetting())
 			{
 				//return error message
 				ModelState.AddModelError("ErrorMessage", "Kullanıcı adı veya parola yanlış. Lütfen kontol edip tekrar deneyin");

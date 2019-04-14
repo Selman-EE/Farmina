@@ -138,25 +138,25 @@ namespace Farmina.Web.DAL.Repository
 			if (string.IsNullOrEmpty(term))
 				return new List<Product>();
 			//
-			return DbInstance.Products?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()) ||
-				 x.Barcode.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()) ||
-				 x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))?.Take(takeCount)?.ToList() ?? new List<Product>();
+			return DbInstance.Products?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLower().Contains(term.Trim().ToLower()) ||
+				 x.Barcode.ToLower().Contains(term.Trim().ToLower()) ||
+				 x.Code.ToLower().Contains(term.Trim().ToLower()))?.Take(takeCount)?.ToList() ?? new List<Product>();
 		}
 		public List<Company> SearchCustomers(string term, int takeCount)
 		{
 			if (string.IsNullOrEmpty(term))
 				return new List<Company>();
 			//
-			return DbInstance.Companies?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
-				|| x.CustomerCode.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))?.Take(takeCount)?.ToList() ?? new List<Company>();
+			return DbInstance.Companies?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLower().Contains(term.Trim().ToLower())
+				|| x.CustomerCode.ToLower().Contains(term.Trim().ToLower()))?.Take(takeCount)?.ToList() ?? new List<Company>();
 		}
 		public List<Supplier> SearchSuppliers(string term, int takeCount)
 		{
 			if (string.IsNullOrEmpty(term))
 				return new List<Supplier>();
 			//
-			return DbInstance.Suppliers?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
-				|| x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant()))?.Take(takeCount)?.ToList() ?? new List<Supplier>();
+			return DbInstance.Suppliers?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLower().Contains(term.Trim().ToLower())
+				|| x.Code.ToLower().Contains(term.Trim().ToLower()))?.Take(takeCount)?.ToList() ?? new List<Supplier>();
 		}
 
 		#endregion
