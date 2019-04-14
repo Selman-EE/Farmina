@@ -61,132 +61,142 @@
 </head>
 
 <body>
-	<div id="divLoading"></div>
-	<section class="body">
+    <div id="divLoading"></div>
+    <section class="body">
 
-		<!-- start: header -->
-		<header class="header">
-			<div class="logo-container">
-				<a href="/" class="logo">
-					<img src="/Asset/img/logo.png" width="60" height="52" alt="Farmina" />
-				</a>
-				<div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html"
-					 data-fire-event="sidebar-left-opened">
-					<i class="fas fa-bars" aria-label="Toggle sidebar"></i>
-				</div>
-			</div>
-
-			<!-- start: search & user box -->
-			<div class="header-right">
-
-				<span class="separator"></span>
-
-				<div id="userbox" class="userbox">
-					<a href="#" data-toggle="dropdown">
-						<figure class="profile-picture">
-							<img src="/Asset/img/logo.png" alt="Joseph Doe" class="rounded-circle"
-								 data-lock-picture="/Asset/img/logo.png" />
-						</figure>
-						<div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
-							<span class="name">Admin</span>
-							<span class="role">yönetici</span>
-						</div>
-
-						<i class="fa custom-caret"></i>
-					</a>
-
-					<div class="dropdown-menu">
-						<ul class="list-unstyled mb-2">
-							<li class="divider"></li>
-							<li>
-								<a role="menuitem" tabindex="-1" href="@Url.Action("Logout","Account")"><i class="fas fa-power-off"></i> Çıkış Yap</a>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-			<!-- end: search & user box -->
-		</header>
-		<!-- end: header -->
-
-		<div class="inner-wrapper">
-			<!-- start: sidebar -->
-			<aside id="sidebar-left" class="sidebar-left">
-				@Html.Partial("~/Views/Shared/SideBar.cshtml")
-			</aside>
-			<!-- end: sidebar -->
-
-			<section role="main" class="content-body">
-				@RenderBody()
-			</section>
-		</div>
+        <!-- start: header -->
+        <header class="header">
+            <div class="logo-container">
+                <a href="/" class="logo">
+                    <img src="/Asset/img/logo.png" width="60" height="52" alt="Farmina" />
+                </a>
+                <div class="d-md-none toggle-sidebar-left" data-toggle-class="sidebar-left-opened" data-target="html" data-fire-event="sidebar-left-opened">
+                    <i class="fas fa-bars" aria-label="Toggle sidebar"></i>
+                </div>
+            </div>
 
 
-	</section>
 
-	<!-- Vendor -->
-	<script src="/Asset/vendor/jquery/jquery.js"></script>
-	<script src="/Asset/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
-	<script src="/Asset/vendor/popper/umd/popper.min.js"></script>
-	<script src="/Asset/vendor/bootstrap/js/bootstrap.js"></script>
-	<script src="/Asset/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-	<script src="/Asset/vendor/common/common.js"></script>
-	<script src="/Asset/vendor/nanoscroller/nanoscroller.js"></script>
-	<script src="/Asset/vendor/magnific-popup/jquery.magnific-popup.js"></script>
-	<script src="/Asset/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+            <!-- start: search & user box -->
+            <div class="header-right">
+                <ul class="notifications">
+                    <li>
+                        <a href="http://sinuos.net/" target="_blank">
+                            <i class="fas fa-globe"></i>
+                            sinuos.net
+                        </a>
+                    </li>
+                </ul>
 
-	<!-- Specific Page Vendor -->
-	<script src="/Asset/vendor/jquery-ui/jquery-ui.js"></script>
-	<script src="/Asset/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
-	<script src="/Asset/vendor/select2/js/select2.js"></script>
-	<script src="/Asset/vendor/jquery-appear/jquery-appear.js"></script>
-	<script src="/Asset/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
-	<script src="/Asset/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
-	<script src="/Asset/vendor/flot/jquery.flot.js"></script>
-	<script src="/Asset/vendor/flot.tooltip/flot.tooltip.js"></script>
-	<script src="/Asset/vendor/flot/jquery.flot.pie.js"></script>
+                <span class="separator"></span>
 
-	<script src="/Asset/vendor/flot/jquery.flot.categories.js"></script>
-	<script src="/Asset/vendor/flot/jquery.flot.resize.js"></script>
-	<script src="/Asset/vendor/jquery-sparkline/jquery-sparkline.js"></script>
-	<script src="/Asset/vendor/raphael/raphael.js"></script>
+                <div id="userbox" class="userbox">
+                    <a href="#" data-toggle="dropdown">
+                        <figure class="profile-picture">
+                            <img src="/Asset/img/logo.png" alt="Joseph Doe" class="rounded-circle"
+                                 data-lock-picture="/Asset/img/logo.png" />
+                        </figure>
+                        <div class="profile-info" data-lock-name="John Doe" data-lock-email="johndoe@okler.com">
+                            <span class="name">Admin</span>
+                            <span class="role">yönetici</span>
+                        </div>
 
-	<script src="/Asset/vendor/select2/js/select2.js"></script>
-	<script src="/Asset/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
-	<script src="/Asset/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
-	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
-	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
-	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
-	<script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
-	<script src="/Asset/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
-	<script src="/Asset/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
-	<script src="/Asset/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+                        <i class="fa custom-caret"></i>
+                    </a>
 
-	<!-- Notifications  2 -->
-	<script src="/Asset/vendor/pnotify/pnotify.custom.js"></script>
-	<script src="/Asset/js/examples/examples.notifications.js"></script>
+                    <div class="dropdown-menu">
+                        <ul class="list-unstyled mb-2">
+                            <li class="divider"></li>
+                            <li>
+                                <a role="menuitem" tabindex="-1" href="@Url.Action("Logout","Account")"><i class="fas fa-power-off"></i> Çıkış Yap</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- end: search & user box -->
+        </header>
+        <!-- end: header -->
 
+        <div class="inner-wrapper">
+            <!-- start: sidebar -->
+            <aside id="sidebar-left" class="sidebar-left">
+                @Html.Partial("~/Views/Shared/SideBar.cshtml")
+            </aside>
+            <!-- end: sidebar -->
 
-	<!-- Theme Base, Components and Settings -->
-	<script src="/Asset/js/theme.js"></script>
-
-	<!-- Theme Custom -->
-	<script src="/Asset/js/custom.js"></script>
-
-	<!-- Theme Initialization Files -->
-	<script src="/Asset/js/theme.init.js"></script>
-
-	<!-- Examples -->
-	<script src="/Asset/js/examples/examples.dashboard.js"></script>
-	<script src="/Asset/js/examples/examples.datatables.default.js"></script>
-	<script src="/Asset/js/examples/examples.datatables.row.with.details.js"></script>
-	<script src="/Asset/js/examples/examples.datatables.tabletools.js"></script>
+            <section role="main" class="content-body">
+                @RenderBody()
+            </section>
+        </div>
 
 
-	<!-- Site Scripts -->
-	<script src="~/Script/site.js?@($"v{Guid.NewGuid().ToString()}")"></script>
+    </section>
 
-	@RenderSection("scripts", false)
+    <!-- Vendor -->
+    <script src="/Asset/vendor/jquery/jquery.js"></script>
+    <script src="/Asset/vendor/jquery-browser-mobile/jquery.browser.mobile.js"></script>
+    <script src="/Asset/vendor/popper/umd/popper.min.js"></script>
+    <script src="/Asset/vendor/bootstrap/js/bootstrap.js"></script>
+    <script src="/Asset/vendor/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="~/Asset/vendor/bootstrap-datepicker/locales/bootstrap-datepicker.tr.min.js"></script>
+    <script src="/Asset/vendor/common/common.js"></script>
+    <script src="/Asset/vendor/nanoscroller/nanoscroller.js"></script>
+    <script src="/Asset/vendor/magnific-popup/jquery.magnific-popup.js"></script>
+    <script src="/Asset/vendor/jquery-placeholder/jquery-placeholder.js"></script>
+
+    <!-- Specific Page Vendor -->
+    <script src="/Asset/vendor/jquery-ui/jquery-ui.js"></script>
+    <script src="/Asset/vendor/jqueryui-touch-punch/jqueryui-touch-punch.js"></script>
+    <script src="/Asset/vendor/select2/js/select2.js"></script>
+    <script src="/Asset/vendor/jquery-appear/jquery-appear.js"></script>
+    <script src="/Asset/vendor/bootstrap-multiselect/bootstrap-multiselect.js"></script>
+    <script src="/Asset/vendor/jquery.easy-pie-chart/jquery.easy-pie-chart.js"></script>
+    <script src="/Asset/vendor/flot/jquery.flot.js"></script>
+    <script src="/Asset/vendor/flot.tooltip/flot.tooltip.js"></script>
+    <script src="/Asset/vendor/flot/jquery.flot.pie.js"></script>
+
+    <script src="/Asset/vendor/flot/jquery.flot.categories.js"></script>
+    <script src="/Asset/vendor/flot/jquery.flot.resize.js"></script>
+    <script src="/Asset/vendor/jquery-sparkline/jquery-sparkline.js"></script>
+    <script src="/Asset/vendor/raphael/raphael.js"></script>
+
+    <script src="/Asset/vendor/select2/js/select2.js"></script>
+    <script src="/Asset/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="/Asset/vendor/datatables/media/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/dataTables.buttons.min.js"></script>
+    <script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.bootstrap4.min.js"></script>
+    <script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.html5.min.js"></script>
+    <script src="/Asset/vendor/datatables/extras/TableTools/Buttons-1.4.2/js/buttons.print.min.js"></script>
+    <script src="/Asset/vendor/datatables/extras/TableTools/JSZip-2.5.0/jszip.min.js"></script>
+    <script src="/Asset/vendor/datatables/extras/TableTools/pdfmake-0.1.32/pdfmake.min.js"></script>
+    <script src="/Asset/vendor/datatables/extras/TableTools/pdfmake-0.1.32/vfs_fonts.js"></script>
+
+    <!-- Notifications  2 -->
+    <script src="/Asset/vendor/pnotify/pnotify.custom.js"></script>
+    <script src="/Asset/js/examples/examples.notifications.js"></script>
+
+
+    <!-- Theme Base, Components and Settings -->
+    <script src="/Asset/js/theme.js"></script>
+
+    <!-- Theme Custom -->
+    <script src="/Asset/js/custom.js"></script>
+
+    <!-- Theme Initialization Files -->
+    <script src="/Asset/js/theme.init.js"></script>
+
+    <!-- Examples -->
+    <script src="/Asset/js/examples/examples.dashboard.js"></script>
+    <script src="/Asset/js/examples/examples.datatables.default.js"></script>
+    <script src="/Asset/js/examples/examples.datatables.row.with.details.js"></script>
+    <script src="/Asset/js/examples/examples.datatables.tabletools.js"></script>
+
+
+    <!-- Site Scripts -->
+    <script src="~/Script/site.js?@($"v{Guid.NewGuid().ToString()}")"></script>
+
+    @RenderSection("scripts", false)
 
 
 </body>

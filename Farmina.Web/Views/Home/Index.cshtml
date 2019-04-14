@@ -12,216 +12,214 @@
 
 <!-- start: page -->
 <div class="row">
+    <div class="col-lg-12 col-xl-12 mb-5">
+        <div class="accordion accordion-primary" id="accordion2Primary">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h4 class="card-title m-0">
+                        <a class="accordion-toggle" data-toggle="collapse"
+                           data-parent="#accordion2Primary" href="#collapse2PrimaryOne"
+                           aria-expanded="true">
+                            Günlük Veri Arama
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse2PrimaryOne" class="collapse" style="">
+                    <div class="card-body">
+                        <form class="form-inline" id="dailyInvoices">
 
-	<div class="col-lg-12 col-xl-12 mb-5">
-		<div class="accordion accordion-primary" id="accordion2Primary">
-			<div class="card card-default">
-				<div class="card-header">
-					<h4 class="card-title m-0">
-						<a class="accordion-toggle" data-toggle="collapse"
-						   data-parent="#accordion2Primary" href="#collapse2PrimaryOne"
-						   aria-expanded="true">
-							Günlük Veri Arama
-						</a>
-					</h4>
-				</div>
-				<div id="collapse2PrimaryOne" class="collapse" style="">
-					<div class="card-body">
-						<form class="form-inline" id="dailyInvoices">
+                            <!--todo: Ali burada ingilizce geliyor gunler aylar TR olsun-->
+                            <div class="col-lg-6">
+                                <div class="input-group">
+                                    <span class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-calendar-alt"></i>
+                                        </span>
+                                    </span>
+                                    <input type="text" data-plugin-datepicker data-plugin-options='{"language": "tr"}' class="form-control" id="reportVoucherDate">
+                                </div>
+                            </div>
+                            <button type="button" id="btnGetAllDailyInvoices" class="btn btn-primary" style="margin-right:7px;">Günlük Rapor Al</button>
 
-							<!--todo: Ali burada ingilizce geliyor gunler aylar TR olsun-->
-							<div class="col-lg-6">
-								<div class="input-group">
-									<span class="input-group-prepend">
-										<span class="input-group-text">
-											<i class="fas fa-calendar-alt"></i>
-										</span>
-									</span>
-									<input type="text" data-plugin-datepicker class="form-control" id="reportVoucherDate">
-								</div>
-							</div>
-							<button type="button" id="btnGetAllDailyInvoices" class="btn btn-primary" style="margin-right:7px;">Günlük Rapor Al</button>
-
-						</form>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
-	<div class="col-md-12">
-		<section class="card">
-			<header class="card-header">
-				<div class="card-actions">
-					<a href="#" class="card-action card-action-toggle" data-card-toggle></a>
-					<a href="#" class="card-action card-action-dismiss" data-card-dismiss></a>
-				</div>
+    <div class="col-md-12">
+        <section class="card">
+            <header class="card-header">
+                <h2 class="card-title">Ürün Ekle</h2>
+            </header>
+            <div class="card-body">
+                <form class="form-horizontal form-bordered" id="saveVoucher">
 
-				<h2 class="card-title">Ürün Ekle</h2>
-			</header>
-			<div class="card-body">
-				<form class="form-horizontal form-bordered" id="saveVoucher">
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Platform Kodu</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="txtPlatformCode" placeholder="Tr Farmina" value="TR Farmina" required id="txtPlatformCode">
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Platform Kodu</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="txtPlatformCode" placeholder="Tr Farmina" value="TR Farmina" required id="txtPlatformCode">
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Belge Tarihi</label>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Belge Tarihi</label>
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <span class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </span>
+                                </span>
+                                <input type="text" data-plugin-datepicker  data-plugin-options='{"language": "tr"}' class="form-control" id="voucherDate">
+                            </div>
+                        </div>
+                    </div>
 
-						<div class="col-lg-6">
-							<div class="input-group">
-								<span class="input-group-prepend">
-									<span class="input-group-text">
-										<i class="fas fa-calendar-alt"></i>
-									</span>
-								</span>
-								<input type="text" data-plugin-datepicker class="form-control" id="voucherDate">
-							</div>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Belge Tipi</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="Invoice" value="Invoice" required id="txtVoucherType">
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Belge Tipi</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="Invoice" value="Invoice" required id="txtVoucherType">
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">
+                            Belge Numarası 
+                            <i class="fa fa-info-circle" style="color:red;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lütfen Yalnız Rakam Giriniz"></i>
+                        </label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="333" value="@voucherNo" required id="txtVoucherNo">
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<!--todo: alttaki label icinde parantez icinde olan uyari mesaji uygun bir sekilde yerlestirilecek.-->
-						<label class="col-lg-2 control-label pt-2">Belge Numarası (Yalniz rakam giriniz!!!)</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="333" value="@voucherNo" required id="txtVoucherNo">
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">
+                            Müşteri Ara
+                        </label>
+                        <div class="col-lg-5">
+                            <select data-plugin-selectTwo class="form-control populate ddlCustomers" name="" id=""></select>
+                        </div>
+                        <div class="col-lg-1">
+                            <button class="btn btn-primary btn-block" type="button" id="btnAddCustomer">Ekle</button>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">
-							Müşteri Ara
-						</label>
-						<div class="col-lg-5">
-							<select data-plugin-selectTwo class="form-control populate ddlCustomers" name="" id=""></select>
-						</div>
-						<div class="col-lg-1">
-							<button class="btn btn-primary btn-block" type="button" id="btnAddCustomer">Ekle</button>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Vergi Numarası</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="13542138123" id="txtTax" required>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Vergi Numarası</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="13542138123" id="txtTax" required>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Ülke Kodu</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="TUR" id="txtCountryCode" required>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Ülke Kodu</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="TUR" id="txtCountryCode" required>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Bölge Kodu</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="34.1" id="txtRegionCode" required>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Bölge Kodu</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="34.1" id="txtRegionCode" required>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Posta Kodu</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="34595" id="txtZipCode" required>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Posta Kodu</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="34595" id="txtZipCode" required>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label  pt-2">Şehir</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="İstanbul" id="txtCity" required>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label  pt-2">Şehir</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="İstanbul" id="txtCity" required>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Adres</label>
+                        <div class="col-lg-6">
+                            <input type="text" class="form-control" name="" placeholder="Çekmece" id="txtAddress" required>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Adres</label>
-						<div class="col-lg-6">
-							<input type="text" class="form-control" name="" placeholder="Çekmece" id="txtAddress" required>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <!--todo: Ali parantez ici uyari-->
+                        <label class="col-lg-2 control-label pt-2">Vergi Oranı <i class="fa fa-info-circle" style="color:red;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Lütfen Tam Sayı Giriniz"></i></label>
+                        <div class="col-lg-6">
+                            <input type="number" class="form-control" name="txtTax" placeholder="" value="18" id="txtTax" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">
+                            Satıcı Ara
+                        </label>
+                        <div class="col-lg-5">
+                            <select data-plugin-selectTwo class="form-control populate ddlSuppliers" name="" id=""></select>
+                        </div>
+                        <div class="col-lg-1">
+                            <button class="btn btn-primary btn-block" type="button" id="btnAddSupplier">Ekle</button>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<!--todo: Ali parantez ici uyari-->
-						<label class="col-lg-2 control-label pt-2">Vergi Oranı (tam sayi girilmeli)</label>
-						<div class="col-lg-6">
-							<input type="number" class="form-control" name="txtTax" placeholder="" value="18" id="txtTax" required>
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">
-							Satıcı Ara
-						</label>
-						<div class="col-lg-5">
-							<select data-plugin-selectTwo class="form-control populate ddlSuppliers" name="" id=""></select>
-						</div>
-						<div class="col-lg-1">
-							<button class="btn btn-primary btn-block" type="button" id="btnAddSupplier">Ekle</button>
-						</div>
-					</div>
+                    <div class="row form-group">
+                        <label class="col-lg-2"></label>
 
-					<div class="row form-group">
-						<label class="col-lg-2"></label>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="col-form-label" for="formGroupExampleInput">Satıcı Adı</label>
+                                <input type="text" class="form-control" id="txtSupplierName" placeholder="">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="col-form-label" for="formGroupExampleInput">Satıcı Kodu</label>
+                                <input type="text" class="form-control" id="txtSupplierCode" placeholder="">
+                            </div>
+                        </div>
+                    </div>
 
-						<div class="col-lg-3">
-							<div class="form-group">
-								<label class="col-form-label" for="formGroupExampleInput">Satıcı Adı</label>
-								<input type="text" class="form-control" id="txtSupplierName" placeholder="">
-							</div>
-						</div>
-						<div class="col-lg-3">
-							<div class="form-group">
-								<label class="col-form-label" for="formGroupExampleInput">Satıcı Kodu</label>
-								<input type="text" class="form-control" id="txtSupplierCode" placeholder="">
-							</div>
-						</div>
-					</div>
+                    <div class="form-group row">
+                        <label class="col-lg-2 control-label pt-2">Ürün Ara</label>
+                        <div class="col-lg-5">
+                            <select multiple data-plugin-selectTwo class="form-control populate ddlProduct" id=""></select>
+                        </div>
+                        <div class="col-lg-1">
+                            <button class="btn btn-primary btn-block" type="button" id="btnAddProduct">Ekle</button>
+                        </div>
+                    </div>
 
-					<div class="form-group row">
-						<label class="col-lg-2 control-label pt-2">Ürün Ara</label>
-						<div class="col-lg-5">
-							<select multiple data-plugin-selectTwo class="form-control populate ddlProduct" id=""></select>
-						</div>
-						<div class="col-lg-1">
-							<button class="btn btn-primary btn-block" type="button" id="btnAddProduct">Ekle</button>
-						</div>
-					</div>
+                    <div class="eklenen-urunler">
+                    </div>
 
-					<div class="eklenen-urunler">
-					</div>
-
-					<div class="form-group row">
-						<div class="col-lg-6">
-							<button class="btn btn-default btn-edit" type="submit">Kaydet</button>
-						</div>
-						<div class="col-lg-6">
-							<p class="total-text">Toplam Fatura Tutarı KDV Dahil: <strong style="font-size:large;" id="totalPriceOfTheVoucher">0</strong><strong style="font-size:large;">TL</strong></p>
-						</div>
-					</div>
-				</form>
-			</div>
-		</section>
-	</div>
+                    <div class="form-group row">
+                        <div class="col-lg-6">
+                            <button class="btn btn-default btn-edit" type="submit">Kaydet</button>
+                        </div>
+                        <div class="col-lg-6">
+                            <p class="total-text">Toplam Fatura Tutarı KDV Dahil: <strong style="font-size:large;" id="totalPriceOfTheVoucher">0</strong><strong style="font-size:large;">TL</strong></p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
 </div>
 <!-- end: page -->
 @section scripts{
 
 	<script type="text/javascript">
 
-		$(document).ready(function () {
+        $(document).ready(function () {
+
+         
 			select2Search('ddlProduct', '/home/searchproducts');
 			select2Search('ddlCustomers', '/home/searchcustomers');
 			select2Search('ddlSuppliers', '/home/searchsuppliers');

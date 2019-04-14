@@ -31,39 +31,39 @@
 				</header>
 				<div class="card-body">
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+					<div class="form-group row">
+						@Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "col-lg-3 control-label pt-2" })
+						<div class="col-md-9">
+							@Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @required = "required" } })
 							@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
 						</div>
 					</div>
 
-					<div class="form-group">
-						@Html.LabelFor(model => model.FirstPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.FirstPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+					<div class="form-group row">
+						@Html.LabelFor(model => model.FirstPercent, htmlAttributes: new { @class = "col-lg-3 control-label pt-2" })
+						<div class="col-md-9">
+							@Html.EditorFor(model => model.FirstPercent, new { htmlAttributes = new { @class = "form-control", @type = "number", @required = "required" } })
 							@Html.ValidationMessageFor(model => model.FirstPercent, "", new { @class = "text-danger" })
 						</div>
 					</div>
-					<div class="form-group">
-						@Html.LabelFor(model => model.SecondPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.SecondPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+					<div class="form-group row">
+						@Html.LabelFor(model => model.SecondPercent, htmlAttributes: new { @class = "col-lg-3 control-label pt-2" })
+						<div class="col-md-9">
+							@Html.EditorFor(model => model.SecondPercent, new { htmlAttributes = new { @class = "form-control", @type = "number", @required = "required" } })
 							@Html.ValidationMessageFor(model => model.SecondPercent, "", new { @class = "text-danger" })
 						</div>
 					</div>
-					<div class="form-group">
-						@Html.LabelFor(model => model.ThirdPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.ThirdPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+					<div class="form-group row">
+						@Html.LabelFor(model => model.ThirdPercent, htmlAttributes: new { @class = "col-lg-3 control-label pt-2" })
+						<div class="col-md-9">
+							@Html.EditorFor(model => model.ThirdPercent, new { htmlAttributes = new { @class = "form-control", @type = "number", @required = "required" } })
 							@Html.ValidationMessageFor(model => model.ThirdPercent, "", new { @class = "text-danger" })
 						</div>
 					</div>
-					<div class="form-group">
-						@Html.LabelFor(model => model.FourthPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-						<div class="col-md-10">
-							@Html.EditorFor(model => model.FourthPercent, new { htmlAttributes = new { @class = "form-control", @type = "number" } })
+					<div class="form-group row">
+						@Html.LabelFor(model => model.FourthPercent, htmlAttributes: new { @class = "col-lg-3 control-label pt-2" })
+						<div class="col-md-9">
+							@Html.EditorFor(model => model.FourthPercent, new { htmlAttributes = new { @class = "form-control", @type = "number", @required = "required" } })
 							@Html.ValidationMessageFor(model => model.FourthPercent, "", new { @class = "text-danger" })
 						</div>
 					</div>
