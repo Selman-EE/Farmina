@@ -39,7 +39,7 @@ namespace Farmina.Web.Controllers
 			DateTime voucherDate;
 			try
 			{
-				voucherDate = DateTime.ParseExact(date, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+				voucherDate = DateTime.ParseExact(date, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
 			}
 			catch
 			{
@@ -158,7 +158,7 @@ namespace Farmina.Web.Controllers
 					DateTime voucherDate;
 					try
 					{
-						voucherDate = DateTime.ParseExact(model.VoucherDate, "MM/dd/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+						voucherDate = DateTime.ParseExact(model.VoucherDate, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);
 					}
 					catch (Exception ex)
 					{
@@ -267,9 +267,8 @@ namespace Farmina.Web.Controllers
 		[Route("home/searchcustomers")]
 		public JsonResult SearchCustomers(string term)
 		{
-			var data = _fR.GetWhere<Company>(x => x.Name.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				|| x.CustomerCode.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? ""))
-				.Where(x => x.Status && !x.IsDeleted)
+			var data = _fR.GetWhere<Company>(x => (x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
+				|| x.CustomerCode.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())) && (x.Status && !x.IsDeleted))
 				.Select(s => new { id = s.Id, text = $"{s.Name} ({s.CustomerCode})" });
 
 			return Json(data, JsonRequestBehavior.AllowGet);
@@ -278,9 +277,8 @@ namespace Farmina.Web.Controllers
 		[Route("home/searchsuppliers")]
 		public JsonResult SearchSuppliers(string term)
 		{
-			var data = _fR.GetWhere<Supplier>(x => x.Name.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? "")
-				|| x.Code.ToLowerInvariant().Contains(term?.Trim()?.ToLowerInvariant() ?? ""))
-				.Where(x => x.Status && !x.IsDeleted)
+			var data = _fR.GetWhere<Supplier>(x => (x.Name.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())
+				|| x.Code.ToLowerInvariant().Contains(term.Trim().ToLowerInvariant())) && (x.Status && !x.IsDeleted))
 				.Select(s => new { id = s.Id, text = $"{s.Name} ({s.Code})" });
 
 			return Json(data, JsonRequestBehavior.AllowGet);
