@@ -13,17 +13,10 @@ using System.Web.Routing;
 
 namespace Farmina.Web.Controllers
 {
-	[CustomExceptionHandler]
-	[AccountAuthorizeAttribute]
+	//[CustomExceptionHandler]
+	//[AccountAuthorizeAttribute]
 	public class BaseController : Controller
-	{
-		//protected FileContentResult TemporaryFile(string fileName, string contentType, string fileDownloadName)
-		//{
-		//	var bytes = System.IO.File.ReadAllBytes(fileName);
-		//	System.IO.File.Delete(fileName);
-		//	return File(bytes, contentType, fileDownloadName);
-		//}
-	}
+	{ }
 
 	//========================================================================================================================
 	// Attribute: Login Control and Role Control

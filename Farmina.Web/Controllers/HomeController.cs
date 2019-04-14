@@ -13,7 +13,7 @@ using System.Web.Mvc;
 
 namespace Farmina.Web.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
 		private readonly IFarminaRepository _fR;
 		public HomeController(IFarminaRepository farminaRepository)
@@ -24,7 +24,8 @@ namespace Farmina.Web.Controllers
 		// GET: Home
 		public ActionResult Index()
 		{
-			ViewBag.VoucherNo = _fR.GetLastVoucherNumber();
+			var vn = _fR.GetLastVoucherNumber();
+			ViewBag.VoucherNo = vn == 0 ? 0 : (vn + 1);
 
 			return View();
 		}
@@ -44,10 +45,8 @@ namespace Farmina.Web.Controllers
 			{
 				return Json(new Response { Status = false, Message = "Tarih formatı yanlış Lütfen sayfayı yenileyip tekrar deneyin" }, JsonRequestBehavior.AllowGet);
 			}
-
-
-			var order = _fR.GetWhere<Order>(x => (x.VoucherDate - voucherDate.Date).TotalDays == 0);
-
+			//
+			var order = _fR.GetWhere<Order>(x => (x.VoucherDate - voucherDate.Date).TotalDays == 0 && x.Status && !x.IsDeleted);
 			if (order.Count <= 0)
 				return Json(new Response { Status = false, Message = "Aradığnız tarih için belge bulunamadı." }, JsonRequestBehavior.AllowGet);
 
@@ -110,7 +109,7 @@ namespace Farmina.Web.Controllers
 
 		#region download vouchers
 		[Route("download/vouchers")]
-		[DeleteFile]
+		//[DeleteFile]
 		public FileContentResult DownloadVoucher(string filePath)
 		{
 			if (!System.IO.File.Exists(filePath))

@@ -2086,6 +2086,7 @@
     <Content Include="Asset\vendor\summernote\summernote.js" />
     <Content Include="Asset\vendor\summernote\summernote.min.js" />
     <Content Include="Global.asax" />
+    <Content Include="Script\home.js" />
     <Content Include="Script\site.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace Farmina.Web.Controllers
 {
-	public class SupplierController : Controller
+	public class SupplierController : BaseController
 	{
 		private readonly IFarminaRepository _fR;
 		public SupplierController(IFarminaRepository farminaRepository)
