@@ -28,5 +28,6 @@ namespace Farmina.Web.DAL.Repository
 		List<Product> SearchProducts(string term, int takeCount);
 		List<Company> SearchCustomers(string term, int takeCount);
 		List<Supplier> SearchSuppliers(string term, int takeCount);
+		void DeleteLoginLogMoreThanThreeMonths();
 	}
 }

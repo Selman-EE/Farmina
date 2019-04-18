@@ -63,17 +63,32 @@ namespace Farmina.Web.Controllers
 			//save login data on cookie
 			CookieHelper.SetCookiesValue(model);
 			//
-			//get ip address
+			_fR.DeleteLoginLogMoreThanThreeMonths();
+			//
+			string hostName, userHostAddress;
+			try
+			{
+				userHostAddress = Helper.RequestHelpers.GetClientIpAddress(Request);
+				//
+				//get ip address
 #pragma warning disable CS0618 // Type or member is obsolete
-			string hostName = System.Net.Dns.GetHostByName(hostName: Environment.MachineName)?.AddressList[0]?.ToString() ?? "";
+				hostName = System.Net.Dns.GetHostByName(hostName: Environment.MachineName)?.AddressList[0]?.ToString() ?? "";
 #pragma warning restore CS0618 // Type or member is obsolete
 
+			}
+			catch (Exception ex)
+			{
+				hostName = ex?.InnerException?.Message ?? ex.Message;
+				userHostAddress = "";
+			}
+			//
+			//
 			_fR.Add(new AccountLog
 			{
-				HostName = (Request?.Url?.AbsolutePath ?? "") + " " + hostName,
-				UserHostAddress = Helper.RequestHelpers.GetClientIpAddress(Request),
+				HostName = hostName,
+				UserHostAddress = userHostAddress,
 				LogonUserIdentity = Request?.LogonUserIdentity?.Name ?? "",
-				ConnectTime = DateTime.Now,
+				LoggedTime = DateTime.Now,
 			});
 			_fR.SaveChanges();
 			//return main page

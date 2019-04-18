@@ -51,6 +51,8 @@ namespace Farmina.Web.Helper
 		//create cookie for login info
 		private static void SetLoginCookie(LoginModel model)
 		{
+			ClearCookies();
+
 			var userDataJson = JsonConvert.SerializeObject(model);
 
 			//forms auth model

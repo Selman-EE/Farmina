@@ -13,8 +13,8 @@ using System.Web.Routing;
 
 namespace Farmina.Web.Controllers
 {
-	//[CustomExceptionHandler]
-	//[AccountAuthorizeAttribute]
+	[CustomExceptionHandler]
+	[AccountAuthorizeAttribute]
 	public class BaseController : Controller
 	{ }
 
@@ -43,7 +43,7 @@ namespace Farmina.Web.Controllers
 			}
 			else
 			{
-				if (user.Username?.Trim().ToLower() != "Username".GetAppSetting().ToLower() || user.Password?.Trim() != "Admin".GetAppSetting())
+				if (user.Username?.Trim().ToLower() != "Username".GetAppSetting().ToLower() || user.Password?.Trim() != "Password".GetAppSetting())
 				{
 					CookieHelper.ClearCookies();
 					//

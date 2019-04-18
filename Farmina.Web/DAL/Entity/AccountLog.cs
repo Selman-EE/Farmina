@@ -15,7 +15,6 @@ namespace Farmina.Web.DAL.Entity
 		public string UserHostAddress { get; set; }
 		public string HostName { get; set; }
 		public string LogonUserIdentity { get; set; }
-		public DateTime ConnectTime { get; set; }
-
+		public DateTime LoggedTime { get; set; }
 	}
 }

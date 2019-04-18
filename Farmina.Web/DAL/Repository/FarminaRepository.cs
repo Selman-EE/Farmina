@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 
@@ -157,6 +158,11 @@ namespace Farmina.Web.DAL.Repository
 			//
 			return DbInstance.Suppliers?.Where(x => x.Status && !x.IsDeleted)?.Where(x => x.Name.ToLower().Contains(term.Trim().ToLower())
 				|| x.Code.ToLower().Contains(term.Trim().ToLower()))?.Take(takeCount)?.ToList() ?? new List<Supplier>();
+		}
+
+		public void DeleteLoginLogMoreThanThreeMonths()
+		{
+			DbInstance.AccountLogs.SqlQuery("DELETE FROM [Farmina].[dbo].[AccountLog] WHERE LoggedTime <= @date", new SqlParameter("@date", DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd")));
 		}
 
 		#endregion
