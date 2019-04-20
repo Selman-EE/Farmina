@@ -162,7 +162,7 @@ namespace Farmina.Web.DAL.Repository
 
 		public void DeleteLoginLogMoreThanThreeMonths()
 		{
-			DbInstance.AccountLogs.SqlQuery("DELETE FROM [Farmina].[dbo].[AccountLog] WHERE LoggedTime <= @date", new SqlParameter("@date", DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd")));
+			DbInstance.AccountLogs.SqlQuery("DELETE FROM [AccountLog] WHERE LoggedTime <= @date", new SqlParameter("@date", DateTime.Now.AddDays(-60).ToString("yyyy-MM-dd")));
 		}
 
 		#endregion
