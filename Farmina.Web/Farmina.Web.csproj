@@ -2561,9 +2561,9 @@
     <Content Include="Views\Order\Index.cshtml" />
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Home\Partial\Discount.cshtml" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Views\Shared\Error.cshtml" />
+    <None Include="Properties\PublishProfiles\LiveProfile.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
