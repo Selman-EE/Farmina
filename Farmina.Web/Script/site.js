@@ -191,7 +191,7 @@ function select2Search(className, searchUrl) {
 			}
 		},
 		minimumInputLength: 2,
-		maximumSelectionLength: 7,
+		maximumSelectionLength: 10,
 		formatSelectionTooBig: function (limit) {
 			return 'Bir kere en fazla (' + limit + ') adet ürün seçilebilir';
 		},
@@ -239,22 +239,22 @@ function formatRepoSelection(repo) {
 //==============================================================
 //Extension methods
 function cleanEscapeRegExp(str) {
-    return str.replace(/([-_&".*+?^=!:${}<>()|\[\]\/\\//])/g, '');
+	return str.replace(/([-_&".*+?^=!:${}<>()|\[\]\/\\//])/g, '');
 }
 function cleanHtmlFromSpecialChars(str) {
-    return str.replace(/([*?^!${}<>()|\[\]\\])/g, '');
+	return str.replace(/([*?^!${}<>()|\[\]\\])/g, '');
 }
 
 //
 function updateQueryStringParameter(key, value, uri) {
-    if (!uri) uri = window.location.href;
+	if (!uri) uri = window.location.href;
 
-    var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
-    var separator = uri.indexOf('?') !== -1 ? "&" : "?";
-    if (uri.match(re)) {
-        return uri.replace(re, '$1' + key + "=" + value + '$2');
-    }
-    else {
-        return uri + separator + key + "=" + value;
-    }
+	var re = new RegExp("([?&])" + key + "=.*?(&|$)", "i");
+	var separator = uri.indexOf('?') !== -1 ? "&" : "?";
+	if (uri.match(re)) {
+		return uri.replace(re, '$1' + key + "=" + value + '$2');
+	}
+	else {
+		return uri + separator + key + "=" + value;
+	}
 }

@@ -57,8 +57,9 @@ namespace Farmina.Web.Controllers
 				ModelState.AddModelError("ErrorMessage", "Kullanıcı adı veya parola yanlış. Lütfen kontol edip tekrar deneyin");
 				return View("Login", model);
 			}
+			//
 			//set session timeout
-			System.Web.HttpContext.Current.Session.Timeout = 60;
+			System.Web.HttpContext.Current.Session.Timeout = 1440;
 			//	
 			//save login data on cookie
 			CookieHelper.SetCookiesValue(model);

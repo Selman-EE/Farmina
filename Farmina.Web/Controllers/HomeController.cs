@@ -82,14 +82,17 @@ namespace Farmina.Web.Controllers
 							var discountRates = op.Discount.Split('+').Where(x => int.Parse(x) > 0).Select(s => int.Parse(s));
 							if (discountRates.Count() > 0)
 							{
+								var discountPrice = 0M;
 								foreach (var discount in discountRates)
 								{
-									totalDiscountPrice += total * (discount / 100);
-									total = total - (total * (discount / 100));
+									discountPrice = total * discount / 100;
+									totalDiscountPrice += discountPrice;
+									total = total - discountPrice;
 								}
 							}
 							//
-							var totalWithTax = total + (total * (item.Tax / 100));
+							var taxPrice = total * item.Tax / 100;
+							var totalWithTax = total + taxPrice;
 							//
 							var productLine = $"{op.Product.Code};{op.Product.Barcode};{op.Product.Name};{op.Quantity};{op.Price:0.##};{op.DiscountName};{totalDiscountPrice:0.##};{total:0.##};{totalWithTax:0.##};TL;";
 							//
@@ -112,6 +115,15 @@ namespace Farmina.Web.Controllers
 		//[DeleteFile]
 		public FileContentResult DownloadVoucher(string filePath)
 		{
+			//delete all other files
+			var directory = Directory.GetFiles(Server.MapPath("~/_Voucher"));
+			if (directory.Count() > 0)
+				Array.ForEach(directory, delegate (string path)
+				{
+					if (filePath != path) System.IO.File.Delete(path);
+				});
+			//
+			//
 			if (!System.IO.File.Exists(filePath))
 				return null;
 			//
@@ -188,6 +200,7 @@ namespace Farmina.Web.Controllers
 						{
 							OrderId = order.Id,
 							ProductId = item.ProductId,
+							ProductBarcode = item.Barcode,
 							ProductName = item.ProductName,
 							Discount = item.ProductDiscount,
 							DiscountName = item.ProductDiscountName,

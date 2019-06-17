@@ -225,8 +225,14 @@ function saveVoucher() {
 			var productId = $(element).find('input[name=productid-' + elementId + ']').val();
 
 			var pd = $(element).find('.productDiscount-' + elementId).find('.ddlDiscount').val().split('|');
-			var productDiscount = pd[1]
+			var productDiscount = pd[1];
 			var productDiscountName = pd[0];
+			//
+			var productBarcode = $(element).find('input[name=productBarcode-' + elementId + ']').val();
+			if (!productBarcode) {
+				showNotify(false, "Ürün barcode boş olamaz");
+				return false;
+			}
 			//
 			var product = {};
 			product.ProductId = productId;
@@ -235,6 +241,7 @@ function saveVoucher() {
 			product.ProductQuantity = productQuantity;
 			product.ProductDiscount = productDiscount;
 			product.ProductDiscountName = productDiscountName;
+			product.Barcode = productBarcode;
 			products.push(product);
 		});
 
