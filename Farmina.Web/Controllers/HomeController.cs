@@ -209,7 +209,8 @@ namespace Farmina.Web.Controllers
 						};
 						//
 						op.Total = op.CalculateTotalPrice();
-						op.Total = op.Total + (op.Total * order.Tax) / 100;
+						var taxAmount = op.Total * order.Tax / 100;
+						op.Total = op.Total + taxAmount;
 						//
 						productList.Add(op);
 					}

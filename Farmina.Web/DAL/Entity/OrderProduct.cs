@@ -51,7 +51,8 @@ namespace Farmina.Web.DAL.Entity
 			var discountRates = Discount.Split('+').Where(x => int.Parse(x) > 0).Select(s => int.Parse(s));
 			foreach (var discount in discountRates)
 			{
-				total = total - (total * (discount / 100));
+				var discountAmount = total * discount / 100;
+				total = total - discountAmount;
 			}
 			//
 			return total;

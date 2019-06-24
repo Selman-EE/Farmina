@@ -64,6 +64,7 @@
 									<th>Adet</th>
 									<th>Fiyat</th>
 									<th>İndirim</th>
+									<th>Vergi</th>
 									<th>Total</th>
 								</tr>
 							</thead>
@@ -77,6 +78,7 @@
 										<td>@item.Quantity</td>
 										<td>@(item.Price.ToString("0.##"))</td>
 										<td>@item.Discount</td>
+										<td>@($"%{item.Order.Tax}")</td>
 										<td>@(item.Total.ToString("0.##"))</td>
 									</tr>
 								}
